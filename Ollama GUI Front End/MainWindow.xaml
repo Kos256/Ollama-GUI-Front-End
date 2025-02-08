@@ -92,6 +92,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
     </Window.Resources>
 
     <Grid x:Name="RootGrid">
@@ -124,15 +125,20 @@
             </Rectangle>
             <TextBlock x:Name="loadingTitle" TextAlignment="Center" HorizontalAlignment="Center" Height="66" TextWrapping="Wrap" Text="Just a sec..." VerticalAlignment="Center" Width="374" FontSize="48" FontFamily="{DynamicResource ExoRegular}"/>
             <TextBlock x:Name="loadingSubtitle" TextAlignment="Center" HorizontalAlignment="Center" Height="66" Margin="0,125,0,0" TextWrapping="Wrap" Text="&lt; Tooltip &gt;" VerticalAlignment="Center" Width="374" FontSize="18" FontFamily="{DynamicResource ExoItalic}" Foreground="#FFAFAFAF"/>
+            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="40" Margin="0,510,0,0" TextWrapping="Wrap" Text="Version v1 by Kos256" VerticalAlignment="Top" Width="539">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF440000" Offset="1"/>
+                        <GradientStop Color="Red" Offset="0.107"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
         </Grid>
 
         <Grid x:Name="MainGrid">
-            <TextBlock x:Name="inputLineCounterText" HorizontalAlignment="Left" Height="25" Margin="30,0,0,90" TextWrapping="Wrap" Text="Cursor line: 1" VerticalAlignment="Bottom" Width="370" FontSize="16" Foreground="#7F0091FF"/>
-            <TextBox x:Name="textInput" TextAlignment="Left" HorizontalAlignment="Center" Padding="10" VerticalAlignment="Bottom" Width="739" Height="50" Foreground="White" Background="#FF121212" BorderBrush="#FF444444" FontSize="20" FontFamily="{DynamicResource ExoRegular}" SelectionBrush="White"
-                TextWrapping="Wrap" AcceptsReturn="False" TextChanged="textInput_TextChanged" SelectionChanged="textInput_SelectionChanged" KeyDown="textInput_KeyDown" KeyUp="textInput_KeyUp" LostFocus="textInput_LostFocus" GotFocus="textInput_GotFocus"
-                Style="{StaticResource MainTextInput}" Margin="0,0,0,31"
-            />
-            <ScrollViewer x:Name="chatScroller" VerticalScrollBarVisibility="Hidden" Foreground="White" HorizontalAlignment="Center" Width="780" VerticalAlignment="Top" Height="356" Margin="0,57,0,0" BorderBrush="Red" BorderThickness="2"/>
+            <ScrollViewer x:Name="chatScroller" VerticalScrollBarVisibility="Hidden" Foreground="White" HorizontalAlignment="Center" Width="780" VerticalAlignment="Top" Height="356" Margin="0,57,0,0" BorderBrush="Red" BorderThickness="2">
+                <StackPanel x:Name="chatStackPanel"/>
+            </ScrollViewer>
             <Grid x:Name="LandingUIGrid">
                 <Grid Margin="10,145,400,122" HorizontalAlignment="Left" Width="380">
                     <Button x:Name="memCapBtnDecrease" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="47" Click="memCapBtnDecrease_Click" BorderBrush="White" Foreground="White" FontSize="20" Margin="76,70,0,0">
@@ -145,33 +151,40 @@
                             <ImageBrush ImageSource="/Assets/Icons/plus.png" Stretch="Uniform"/>
                         </Button.Background>
                     </Button>
-                    <TextBox x:Name="memoryCapTextbox" TextAlignment="Center" KeyDown="memoryCapTextbox_KeyDown" HorizontalAlignment="Center" PreviewTextInput="memoryCapTextbox_PreviewTextInput" DataObject.Pasting="memoryCapTextbox_Pasting" TextChanged="memoryCapTextbox_TextChanged" AcceptsReturn="False" LostFocus="memoryCapTextbox_LostFocus" Height="47" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="125" Background="{x:Null}" BorderBrush="White" Foreground="White" CaretBrush="White" FontFamily="{DynamicResource ExoRegular}" FontSize="36" Margin="0,70,0,0"/>
+                    <TextBox x:Name="memoryCapTextbox" TextAlignment="Center" BorderThickness="2" KeyDown="memoryCapTextbox_KeyDown" HorizontalAlignment="Center" PreviewTextInput="memoryCapTextbox_PreviewTextInput" DataObject.Pasting="memoryCapTextbox_Pasting" TextChanged="memoryCapTextbox_TextChanged" AcceptsReturn="False" GotFocus="memoryCapTextbox_GotFocus"  LostFocus="memoryCapTextbox_LostFocus" Height="47" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="125" Background="{x:Null}" BorderBrush="White" Foreground="White" CaretBrush="White" FontFamily="{DynamicResource ExoRegular}" FontSize="36" Margin="0,70,0,0" SelectionBrush="White"/>
                     <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="38" TextWrapping="Wrap" Text="Conversation Settings" VerticalAlignment="Top" Width="363" FontSize="24" FontFamily="{DynamicResource ExoItalic}" Margin="0,5,0,0"/>
                     <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="43" TextWrapping="Wrap" Text="Message Memory Cap" VerticalAlignment="Top" Width="363" FontSize="14" FontFamily="{DynamicResource ExoRegular}" Margin="0,48,0,0"/>
                 </Grid>
                 <Grid Margin="10,145,10,122" HorizontalAlignment="Right" Width="380">
                     <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="38" TextWrapping="Wrap" Text="Model Settings" VerticalAlignment="Top" Width="363" FontSize="24" FontFamily="{DynamicResource ExoItalic}" Margin="0,5,0,0"/>
                 </Grid>
-                <Rectangle Height="265" Width="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Rectangle Height="289" Width="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Transparent"/>
-                            <GradientStop Color="Transparent" Offset="1"/>
-                            <GradientStop Offset="0.5" Color="#33FFFFFF"/>
+                            <GradientStop Color="Transparent"/>
+                            <GradientStop Offset="0.35" Color="#33FFFFFF"/>
+                            <GradientStop Color="#33FFFFFF" Offset="1"/>
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
                 <TextBlock x:Name="mainTitle" TextAlignment="Center" HorizontalAlignment="Center" Height="59" Margin="0,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="657" FontSize="48" FontFamily="{DynamicResource ExoBold}" Background="#00000000" Text="How can I help?"/>
             </Grid>
-            <Rectangle Height="4" VerticalAlignment="Center" Width="744" Margin="0,293,0,0">
+            <Rectangle x:Name="inputChatSeperatorRect" Height="4" VerticalAlignment="Center" Width="744" Margin="0,293,0,0">
                 <Rectangle.Fill>
                     <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
                         <GradientStop Color="Transparent"/>
                         <GradientStop Color="Transparent" Offset="1"/>
-                        <GradientStop Offset="0.5" Color="#33FFFFFF"/>
+                        <GradientStop Offset="0.2" Color="#33FFFFFF"/>
+                        <GradientStop Color="#33FFFFFF" Offset="0.8"/>
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
+            <TextBlock x:Name="inputLineCounterText" HorizontalAlignment="Left" Height="25" Margin="30,0,0,91" TextWrapping="Wrap" Text="Cursor line: 1" VerticalAlignment="Bottom" Width="370" FontSize="16" Foreground="#7F0091FF"/>
+            <TextBox x:Name="textInput" TextAlignment="Left" HorizontalAlignment="Center" Padding="10" VerticalAlignment="Bottom" Width="739" Height="50" Foreground="White" Background="#FF121212" BorderBrush="#FF444444" FontSize="20" FontFamily="{DynamicResource ExoRegular}" SelectionBrush="White"
+                TextWrapping="Wrap" AcceptsReturn="False" TextChanged="textInput_TextChanged" SelectionChanged="textInput_SelectionChanged" KeyDown="textInput_KeyDown" KeyUp="textInput_KeyUp" LostFocus="textInput_LostFocus" GotFocus="textInput_GotFocus"
+                Style="{StaticResource MainTextInput}" Margin="0,0,0,31"
+            />
         </Grid>
     </Grid>
 </Window>

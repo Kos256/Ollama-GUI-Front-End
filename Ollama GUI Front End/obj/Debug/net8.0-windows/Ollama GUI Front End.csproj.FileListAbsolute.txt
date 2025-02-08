@@ -51,3 +51,4 @@ C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI
 C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.pdb
 C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.genruntimeconfig.cache
 C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\ref\Ollama GUI Front End.dll
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\bin\Debug\net8.0-windows\Newtonsoft.Json.dll

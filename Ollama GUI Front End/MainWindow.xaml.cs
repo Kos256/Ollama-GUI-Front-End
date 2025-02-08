@@ -19,6 +19,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
+using System.Net.Http.Json;
+using System.Xml;
 
 /*
  * TO-DO: 
@@ -28,6 +30,7 @@ using System.Text.RegularExpressions;
  * > Fix memory cap buttons
  * > Add model selection menu
  * > Add model browser button (pops out a new window)
+ * > MD to RTF parser (for user + AI)
  * 
  * Later:
  * > Add Win + DownArrow
@@ -72,6 +75,7 @@ namespace Ollama_GUI_Front_End
             textInput.Text = "Send a message";
             textInput.Foreground = new SolidColorBrush(Colors.DarkGray);
             textInput.Height = 50;
+            inputLineCounterText.Text = "Cursor line: 1";
             memcap = saveData.Settings.MemoryCap;
             memoryCapTextbox.Text = memcap.ToString();
 
@@ -381,6 +385,12 @@ namespace Ollama_GUI_Front_End
                 Bottom = 90 + (textInput.Height - 50)
             };
 
+            inputChatSeperatorRect.Margin = new Thickness(
+                inputChatSeperatorRect.Margin.Left,
+                inputChatSeperatorRect.Margin.Top,
+                inputChatSeperatorRect.Margin.Right,
+                (textInput.Height - 8) * 1.2 - 50
+            );
             chatScroller.Height = scrollViewerDefaultHeight - (textInput.Height - 50);
         }
 
@@ -586,6 +596,13 @@ namespace Ollama_GUI_Front_End
 
             if (memcap == 0) memoryCapTextbox.Text = "No cap";
         }
+        private void memoryCapTextbox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (memoryCapTextbox.Text == "No cap")
+            {
+                memoryCapTextbox.Text = "0";
+            }
+        }
         private void memoryCapTextbox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -600,7 +617,6 @@ namespace Ollama_GUI_Front_End
         {
             if (!((memcap + 1) > maxMemoryCap)) memcap += 1;
             memoryCapTextbox.Text = memcap.ToString();
-
         }
         private void memCapBtnDecrease_Click(object sender, RoutedEventArgs e)
         {
@@ -800,31 +816,55 @@ namespace Ollama_GUI_Front_End
 
         private AppSaveData LoadAppSaveData()
         {
-            try
+            if (File.Exists("savedata.json"))
             {
-                string exeDirectory = RetrieveExecutableDirectory();
-                string filePath = System.IO.Path.Combine(exeDirectory, "savedata.json");
+                try
+                {
+                    string exeDirectory = RetrieveExecutableDirectory();
+                    string filePath = System.IO.Path.Combine(exeDirectory, "savedata.json");
 
-                if (File.Exists(filePath))
-                {
-                    string jsonString = File.ReadAllText(filePath);
-                    var options = new JsonSerializerOptions
+                    if (File.Exists(filePath))
                     {
-                        PropertyNameCaseInsensitive = true,
-                        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                        WriteIndented = true
-                    };
-                    return JsonSerializer.Deserialize<AppSaveData>(jsonString, options);
+                        string jsonString = File.ReadAllText(filePath);
+                        var options = new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true,
+                            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                            WriteIndented = true
+                        };
+                        return JsonSerializer.Deserialize<AppSaveData>(jsonString, options);
+                    }
+                    else
+                    {
+                        return new AppSaveData { IsFirstRun = true };
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
+                    MessageBox.Show($"Error loading application data: {ex.Message}", "Error loading user save data", MessageBoxButton.OK, MessageBoxImage.Error);
                     return new AppSaveData { IsFirstRun = true };
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error loading application data: {ex.Message}", "Error loading user save data", MessageBoxButton.OK, MessageBoxImage.Error);
-                return new AppSaveData { IsFirstRun = true };   
+                MessageBox.Show($"A new savedata file was created...", "Where's the savedata file??", MessageBoxButton.OK, MessageBoxImage.Question);
+                // Create default save data
+                var defaultSaveData = new AppSaveData
+                {
+                    IsFirstRun = true,
+                    Settings = new UserSettings
+                    {
+                        MemoryCap = 50
+                    }
+                };
+
+                // Serialize the default save data to JSON
+                string jsonData = JsonSerializer.Serialize(defaultSaveData, new JsonSerializerOptions { WriteIndented = true });
+
+                // Write the JSON data to the file
+                File.WriteAllText("savedata.json", jsonData);
+
+                return defaultSaveData;
             }
         }
 

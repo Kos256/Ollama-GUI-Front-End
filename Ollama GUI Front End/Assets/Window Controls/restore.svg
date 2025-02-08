@@ -1,0 +1,16 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+	<title>Window Control Buttons</title>
+	<style>
+		.s0 { fill: #ffffff } 
+		.s1 { fill: #929292 } 
+		.s2 { fill: #dddddd } 
+	</style>
+	<path id="Restore 1 copy 2" fill-rule="evenodd" class="s0" d="m58 942v-57h884v57z"/>
+	<path id="Restore 1 copy 3" fill-rule="evenodd" class="s0" d="m58 58h57v884h-57z"/>
+	<path id="Restore 1 copy 6" fill-rule="evenodd" class="s1" d="m993 11v57h-884v-57z"/>
+	<path id="Restore 1 copy 7" fill-rule="evenodd" class="s1" d="m993 895h-57v-884h57z"/>
+	<path id="Restore 1 copy 4" fill-rule="evenodd" class="s2" d="m969 32v57h-884v-57z"/>
+	<path id="Restore 1 copy 5" fill-rule="evenodd" class="s2" d="m969 916h-57v-884h57z"/>
+	<path id="Restore 1 copy" fill-rule="evenodd" class="s0" d="m942 942h-57v-884h57z"/>
+	<path id="Restore 1" fill-rule="evenodd" class="s0" d="m942 58v57h-884v-57z"/>
+</svg>

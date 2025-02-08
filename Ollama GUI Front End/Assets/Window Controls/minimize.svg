@@ -1,0 +1,7 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+	<title>Window Control Buttons</title>
+	<style>
+		.s0 { fill: #ffffff } 
+	</style>
+	<path id="Min" fill-rule="evenodd" class="s0" d="m945 471.4v57.2h-890v-57.2z"/>
+</svg>

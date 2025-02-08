@@ -1,0 +1,154 @@
+﻿<Window
+    x:Class="Ollama_GUI_Front_End.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Ollama_GUI_Front_End"
+    mc:Ignorable="d"
+    Title="Ollama" Height="550" Width="800" Background="#00000000" Foreground="White" WindowStyle="None" AllowsTransparency="True" Icon="pack://application:,,,/Ollama GUI Front End;component/Assets/app.png" ResizeMode="CanMinimize" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20">
+    <!--
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="30" CornerRadius="0" GlassFrameThickness="0"/>
+    </WindowChrome.WindowChrome>
+    -->
+
+    <Window.Resources>
+        <!-- Window control button hover styles -->
+        <Style x:Key="WinControlBtnHover" TargetType="Button">
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="buttonGrid" Background="Transparent">
+                            <Border x:Name="border" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="buttonGrid" Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#22FFFFFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="WinControlBtnHoverClose" TargetType="Button" BasedOn="{StaticResource WinControlBtnHover}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="buttonGrid" Background="Transparent">
+                            <Border x:Name="border" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+                                <Image Source="pack://application:,,,/Ollama GUI Front End;component/Assets/Window Controls/close.png" Height="15" Width="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="buttonGrid" Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="WinControlBtnHoverMinimize" TargetType="Button" BasedOn="{StaticResource WinControlBtnHover}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="buttonGrid" Background="Transparent">
+                            <Border x:Name="border" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+                                <Image Source="pack://application:,,,/Ollama GUI Front End;component/Assets/Window Controls/minimize.png" Height="15" Width="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="buttonGrid" Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#22FFFFFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MainTextInput" TargetType="TextBox">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="White"/>
+                                <!-- Change to desired focus color -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="RootGrid">
+        <Rectangle x:Name="windowBG" Fill="Black" Stroke="#FF444444" Margin="10,55,10,10" RadiusX="11.5" RadiusY="11.5" d:IsLocked="True"/>
+        <Rectangle x:Name="windowBar" Fill="Black" Stroke="#FF444444" Margin="10,10,10,404" RadiusX="10.278" RadiusY="10.278" HorizontalAlignment="Center" Width="780" VerticalAlignment="Top" Height="36"/>
+        <TextBlock x:Name="windowBarTitle" TextAlignment="Left" HorizontalAlignment="Left" Height="18" Margin="49,18,0,0" TextWrapping="Wrap" Text="Ollama" VerticalAlignment="Top" Width="351" FontSize="14" FontFamily="{DynamicResource ExoRegular}" d:IsLocked="True"/>
+        <Image x:Name="windowIcon" Source="pack://application:,,,/Ollama GUI Front End;component/Assets/app.png" Height="15" Width="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,18,0,0" d:IsLocked="True"/>
+        <Rectangle x:Name="windowDragLine" HorizontalAlignment="Center" Height="5" Margin="0,26,0,0" VerticalAlignment="Top" Width="320" d:IsLocked="True">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Offset="0" Color="Transparent"/>
+                    <GradientStop Offset="0.4" Color="#19FFFFFF"/>
+                    <GradientStop Offset="0.6" Color="#19FFFFFF"/>
+                    <GradientStop Offset="1" Color="Transparent"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Rectangle x:Name="windowBarCollider" MouseEnter="WinBarColliderMouseEnter" MouseLeave="WinBarColliderMouseLeave" Margin="167,10,167,404" RadiusX="10.278" RadiusY="10.278" Fill="Transparent" HorizontalAlignment="Center" Width="466" VerticalAlignment="Top" Height="36"/>
+        <Button Style="{StaticResource WinControlBtnHoverClose}" x:Name="winCtrlBtnClose" HorizontalAlignment="Right" Margin="0,12,26,0" VerticalAlignment="Top" Height="32" Width="48" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="winCtrlBtnClose_Click" d:IsLocked="True"/>
+        <Button Style="{StaticResource WinControlBtnHoverMinimize}" x:Name="winCtrlBtnMinimize" HorizontalAlignment="Right" Margin="0,12,79,0" VerticalAlignment="Top" Height="32" Width="48" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="winCtrlBtnMinimize_Click" d:IsLocked="True"/>
+        <Grid x:Name="LoadingGrid" d:IsHidden="True">
+            <Rectangle x:Name="loadingRect" HorizontalAlignment="Center" Height="480" VerticalAlignment="Top" Width="778" Margin="0,56,0,0" RadiusX="11" RadiusY="11">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FF181818" Offset="0.5"/>
+                        <GradientStop Color="Black" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBlock x:Name="loadingTitle" TextAlignment="Center" HorizontalAlignment="Center" Height="66" TextWrapping="Wrap" Text="Just a sec..." VerticalAlignment="Center" Width="374" FontSize="48" FontFamily="{DynamicResource ExoRegular}"/>
+            <TextBlock x:Name="loadingSubtitle" TextAlignment="Center" HorizontalAlignment="Center" Height="66" Margin="0,125,0,0" TextWrapping="Wrap" Text="&lt; Tooltip &gt;" VerticalAlignment="Center" Width="374" FontSize="18" FontFamily="{DynamicResource ExoItalic}" Foreground="#FFAFAFAF"/>
+        </Grid>
+
+        <Grid x:Name="MainGrid">
+            <TextBlock x:Name="inputLineCounterText" HorizontalAlignment="Left" Height="25" Margin="30,0,0,90" TextWrapping="Wrap" Text="Cursor line: 1" VerticalAlignment="Bottom" Width="370" FontSize="16" Foreground="#7F0091FF"/>
+            <TextBox x:Name="textInput" TextAlignment="Left" HorizontalAlignment="Center" Padding="10" VerticalAlignment="Bottom" Width="739" Height="50" Foreground="White" Background="#FF121212" BorderBrush="#FF444444" FontSize="20" FontFamily="{DynamicResource ExoRegular}" SelectionBrush="White"
+                TextWrapping="Wrap" AcceptsReturn="False" TextChanged="textInput_TextChanged" SelectionChanged="textInput_SelectionChanged" KeyDown="textInput_KeyDown" KeyUp="textInput_KeyUp" LostFocus="textInput_LostFocus" GotFocus="textInput_GotFocus"
+                Style="{StaticResource MainTextInput}" Margin="0,0,0,31"
+            />
+            <ScrollViewer x:Name="chatScroller" VerticalScrollBarVisibility="Hidden" Foreground="White" HorizontalAlignment="Center" Width="780" VerticalAlignment="Top" Height="356" Margin="0,57,0,0" BorderBrush="Red" BorderThickness="2">
+                <StackPanel x:Name="chatStackPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            </ScrollViewer>
+            <Grid x:Name="LandingUIGrid">
+                <TextBlock x:Name="mainTitle" TextAlignment="Center" HorizontalAlignment="Center" Height="79" Margin="0,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="657" FontSize="48" FontFamily="{DynamicResource ExoBold}" Background="#00000000" Text="How can I help?"/>
+                <Button x:Name="memCapBtnDecrease" HorizontalAlignment="Left" Height="47" Margin="33,168,0,0" VerticalAlignment="Top" Width="47" Click="memCapBtnDecrease_Click" BorderBrush="White" Foreground="White" FontSize="20">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Assets/Icons/minus.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="memCapBtnIncrease" HorizontalAlignment="Left" Height="47" Margin="215,168,0,0" VerticalAlignment="Top" Width="47" Click="memCapBtnIncrease_Click" BorderBrush="White" Foreground="White" FontSize="20">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Assets/Icons/plus.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <TextBox x:Name="memoryCapTextbox" TextAlignment="Center" KeyDown="memoryCapTextbox_KeyDown" HorizontalAlignment="Left" PreviewTextInput="memoryCapTextbox_PreviewTextInput" DataObject.Pasting="memoryCapTextbox_Pasting" TextChanged="memoryCapTextbox_TextChanged" AcceptsReturn="False" LostFocus="memoryCapTextbox_LostFocus" Height="47" Margin="85,168,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="125" Background="{x:Null}" BorderBrush="White" Foreground="White" CaretBrush="White" FontFamily="{DynamicResource ExoRegular}" FontSize="36"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

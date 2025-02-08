@@ -24,3 +24,30 @@ C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama GUI Front End\bin\Debug\
 C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama GUI Front End\bin\Debug\net8.0-windows\OllamaSharp.dll
 C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.csproj.AssemblyReference.cache
 C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama G.E9E77795.Up2Date
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\bin\Debug\net8.0-windows\Ollama GUI Front End.exe
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\bin\Debug\net8.0-windows\Ollama GUI Front End.deps.json
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\bin\Debug\net8.0-windows\Ollama GUI Front End.runtimeconfig.json
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\bin\Debug\net8.0-windows\Ollama GUI Front End.dll
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\bin\Debug\net8.0-windows\Ollama GUI Front End.pdb
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\bin\Debug\net8.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\bin\Debug\net8.0-windows\Microsoft.Extensions.AI.Abstractions.dll
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\bin\Debug\net8.0-windows\OllamaSharp.dll
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.csproj.AssemblyReference.cache
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End_MarkupCompile.cache
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End_MarkupCompile.lref
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\App.baml
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.g.resources
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.AssemblyInfoInputs.cache
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.AssemblyInfo.cs
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.csproj.CoreCompileInputs.cache
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.sourcelink.json
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama G.E9E77795.Up2Date
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.dll
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\refint\Ollama GUI Front End.dll
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.pdb
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.genruntimeconfig.cache
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\ref\Ollama GUI Front End.dll

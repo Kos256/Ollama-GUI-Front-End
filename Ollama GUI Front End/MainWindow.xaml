@@ -140,13 +140,13 @@
                 <StackPanel x:Name="chatStackPanel"/>
             </ScrollViewer>
             <Grid x:Name="LandingUIGrid">
-                <Grid Margin="10,145,400,122" HorizontalAlignment="Left" Width="380">
-                    <Button x:Name="memCapBtnDecrease" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="47" Click="memCapBtnDecrease_Click" BorderBrush="White" Foreground="White" FontSize="20" Margin="76,70,0,0">
+                <Grid Margin="10,145,0,130" HorizontalAlignment="Left" Width="388">
+                    <Button x:Name="memCapBtnDecrease" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="47" Click="memCapBtnDecrease_Click" BorderBrush="White" BorderThickness="2"  Foreground="White" FontSize="20" Margin="76,70,0,0">
                         <Button.Background>
                             <ImageBrush ImageSource="/Assets/Icons/minus.png" Stretch="Uniform"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="memCapBtnIncrease" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="47" Click="memCapBtnIncrease_Click" BorderBrush="White" Foreground="White" FontSize="20" Margin="256,70,0,0">
+                    <Button x:Name="memCapBtnIncrease" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="47" Click="memCapBtnIncrease_Click" BorderBrush="White" BorderThickness="2" Foreground="White" FontSize="20" Margin="256,70,0,0">
                         <Button.Background>
                             <ImageBrush ImageSource="/Assets/Icons/plus.png" Stretch="Uniform"/>
                         </Button.Background>
@@ -155,8 +155,14 @@
                     <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="38" TextWrapping="Wrap" Text="Conversation Settings" VerticalAlignment="Top" Width="363" FontSize="24" FontFamily="{DynamicResource ExoItalic}" Margin="0,5,0,0"/>
                     <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="43" TextWrapping="Wrap" Text="Message Memory Cap" VerticalAlignment="Top" Width="363" FontSize="14" FontFamily="{DynamicResource ExoRegular}" Margin="0,48,0,0"/>
                 </Grid>
-                <Grid Margin="10,145,10,122" HorizontalAlignment="Right" Width="380">
-                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="38" TextWrapping="Wrap" Text="Model Settings" VerticalAlignment="Top" Width="363" FontSize="24" FontFamily="{DynamicResource ExoItalic}" Margin="0,5,0,0"/>
+                <Grid Margin="0,145,10,130" HorizontalAlignment="Right" Width="387">
+                    <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="38" TextWrapping="Wrap" Text="Model" VerticalAlignment="Top" Width="363" FontSize="24" FontFamily="{DynamicResource ExoItalic}" Margin="0,5,0,0"/>
+                    <Border x:Name="modelListBorder" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center" Height="180" Width="360" Margin="0,0,0,9" BorderThickness="1,1,1,1">
+                        <ScrollViewer x:Name="modelList" BorderBrush="White">
+                            <StackPanel x:Name="modelListSP"/>
+                        </ScrollViewer>
+                    </Border>
+                    <Button Content="Browse more models..." HorizontalAlignment="Center" Height="33" VerticalAlignment="Bottom" Width="360" Margin="0,0,0,13" Foreground="White" Background="Black" BorderBrush="White"/>
                 </Grid>
                 <Rectangle Height="289" Width="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Rectangle.Fill>

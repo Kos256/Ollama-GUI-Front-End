@@ -31,6 +31,7 @@ using System.Xml;
  * > Add model selection menu
  * > Add model browser button (pops out a new window)
  * > MD to RTF parser (for user + AI)
+ * > Conversation settings, add a remember memory cap checkbox setting
  * 
  * Later:
  * > Add Win + DownArrow
@@ -78,6 +79,7 @@ namespace Ollama_GUI_Front_End
             inputLineCounterText.Text = "Cursor line: 1";
             memcap = saveData.Settings.MemoryCap;
             memoryCapTextbox.Text = memcap.ToString();
+            if (memcap == 0) memoryCapTextbox.Text = "No cap";
 
             // source 0 for loading anim
             // source 1 for winctrl kbd shortcut
@@ -304,7 +306,34 @@ namespace Ollama_GUI_Front_End
                 foreach (var model in models)
                 {
                     sb.AppendLine($"Name: {model.Name}, Size: {model.Size}");
+
+                    Border listItemBorder = new Border
+                    {
+                        Background = new SolidColorBrush(Colors.Black),
+                        BorderBrush = new SolidColorBrush(Colors.White),
+                        BorderThickness = new Thickness(2),
+                        CornerRadius = new CornerRadius(5),
+                        Padding = new Thickness(10),
+                        Margin = new Thickness(10, 10, 10, 0),
+
+                        HorizontalAlignment = HorizontalAlignment.Stretch,
+                        VerticalAlignment = VerticalAlignment.Top,
+                    };
+                    listItemBorder.Child = new TextBlock
+                    {
+                        Text = model.Name,
+                        Foreground = Brushes.White,
+                        FontSize = 20,
+                        HorizontalAlignment = HorizontalAlignment.Stretch,
+                        TextWrapping = TextWrapping.Wrap
+                    };
+                    var litxt = listItemBorder.Child as TextBlock; // (li)st item (txt) block
+
+                    modelListSP.Children.Add(listItemBorder);
                 }
+
+
+
                 loadingTitle.Text = "All set!";
                 loadingTitle.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                 Mouse.OverrideCursor = null;
@@ -595,6 +624,9 @@ namespace Ollama_GUI_Front_End
             if (memcap > maxMemoryCap) memoryCapTextbox.Text = saveData.Settings.MemoryCap.ToString();
 
             if (memcap == 0) memoryCapTextbox.Text = "No cap";
+
+            saveData.Settings.MemoryCap = memcap;
+            SaveAppSaveData(saveData);
         }
         private void memoryCapTextbox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -610,6 +642,9 @@ namespace Ollama_GUI_Front_End
                 memcap = int.Parse(memoryCapTextbox.Text);
                 if (memcap > maxMemoryCap) memoryCapTextbox.Text = saveData.Settings.MemoryCap.ToString();
                 textInput.Focus();
+
+                saveData.Settings.MemoryCap = memcap;
+                SaveAppSaveData(saveData);
             }
         }
 
@@ -617,6 +652,9 @@ namespace Ollama_GUI_Front_End
         {
             if (!((memcap + 1) > maxMemoryCap)) memcap += 1;
             memoryCapTextbox.Text = memcap.ToString();
+
+            saveData.Settings.MemoryCap = memcap;
+            SaveAppSaveData(saveData);
         }
         private void memCapBtnDecrease_Click(object sender, RoutedEventArgs e)
         {
@@ -624,6 +662,9 @@ namespace Ollama_GUI_Front_End
             memoryCapTextbox.Text = memcap.ToString();
 
             if (memcap == 0) memoryCapTextbox.Text = "No cap";
+
+            saveData.Settings.MemoryCap = memcap;
+            SaveAppSaveData(saveData);
         }
 
 

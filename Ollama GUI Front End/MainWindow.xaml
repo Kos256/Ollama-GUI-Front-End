@@ -97,9 +97,9 @@
 
     <Grid x:Name="RootGrid">
         <Rectangle x:Name="windowBG" Fill="Black" Stroke="#FF444444" Margin="10,55,10,10" RadiusX="11.5" RadiusY="11.5" d:IsLocked="True"/>
-        <Rectangle x:Name="windowBar" Fill="Black" Stroke="#FF444444" Margin="10,10,10,404" RadiusX="10.278" RadiusY="10.278" HorizontalAlignment="Center" Width="780" VerticalAlignment="Top" Height="36"/>
+        <Rectangle x:Name="windowBar" Fill="Black" Stroke="#FF444444" Margin="10,10,10,404" RadiusX="10.278" RadiusY="10.278" HorizontalAlignment="Center" Width="780" VerticalAlignment="Top" Height="36" d:IsLocked="True"/>
         <TextBlock x:Name="windowBarTitle" TextAlignment="Left" HorizontalAlignment="Left" Height="18" Margin="49,18,0,0" TextWrapping="Wrap" Text="Ollama" VerticalAlignment="Top" Width="351" FontSize="14" FontFamily="{DynamicResource ExoRegular}" d:IsLocked="True"/>
-        <Image x:Name="windowIcon" Source="pack://application:,,,/Ollama GUI Front End;component/Assets/app.png" Height="15" Width="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,18,0,0" d:IsLocked="True"/>
+        <Image x:Name="windowIcon" Source="pack://application:,,,/Ollama GUI Front End;component/Assets/app legacy.png" Height="15" Width="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,18,0,0" d:IsLocked="True"/>
         <Rectangle x:Name="windowDragLine" HorizontalAlignment="Center" Height="5" Margin="0,26,0,0" VerticalAlignment="Top" Width="320" d:IsLocked="True">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">

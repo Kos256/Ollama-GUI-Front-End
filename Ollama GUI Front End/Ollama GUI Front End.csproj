@@ -7,10 +7,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="app icon.png" />
+    <None Remove="Assets\app legacy.png" />
     <None Remove="Assets\app.png" />
     <None Remove="Assets\Fonts\Exo\Black.otf" />
     <None Remove="Assets\Fonts\Exo\BlackItalic.otf" />
@@ -82,11 +84,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="OllamaSharp" Version="5.0.5" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\app legacy.png" />
     <Resource Include="Assets\app.png" />
     <Resource Include="Assets\Fonts\Exo\Exo Black.otf" />
     <Resource Include="Assets\Fonts\Exo\Exo BlackItalic.otf" />
@@ -116,8 +123,6 @@
     <Resource Include="Assets\Window Controls\minimize.svg" />
     <Resource Include="Assets\Window Controls\restore.png" />
     <Resource Include="Assets\Window Controls\restore.svg" />
-    <Resource Include="close.png" />
-    <Resource Include="Screenshot 2023-03-05 135529.png" />
   </ItemGroup>
 
 </Project>

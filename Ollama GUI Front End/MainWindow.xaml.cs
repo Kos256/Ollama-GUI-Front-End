@@ -888,14 +888,14 @@ namespace Ollama_GUI_Front_End
             }
             else
             {
-                MessageBox.Show($"A new savedata file was created...", "Where's the savedata file??", MessageBoxButton.OK, MessageBoxImage.Question);
+                // MessageBox.Show($"A new savedata file was created...", "Where's the savedata file??", MessageBoxButton.OK, MessageBoxImage.Question);
                 // Create default save data
                 var defaultSaveData = new AppSaveData
                 {
                     IsFirstRun = true,
                     Settings = new UserSettings
                     {
-                        MemoryCap = 50
+                        MemoryCap = 20
                     }
                 };
 

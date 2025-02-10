@@ -639,6 +639,7 @@ namespace Ollama_GUI_Front_End
         {
             if (e.Key == Key.Enter)
             {
+                if (memoryCapTextbox.Text.Length > 5) MessageBox.Show("Implement rejection feature");
                 memcap = int.Parse(memoryCapTextbox.Text);
                 if (memcap > maxMemoryCap) memoryCapTextbox.Text = saveData.Settings.MemoryCap.ToString();
                 textInput.Focus();

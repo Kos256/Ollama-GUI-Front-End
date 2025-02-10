@@ -81,3 +81,4 @@ C:\Users\kosai\Source\Repos\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\
 C:\Users\kosai\Source\Repos\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End.genruntimeconfig.cache
 C:\Users\kosai\Source\Repos\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\ref\Ollama GUI Front End.dll
 C:\Users\kosai\Source\Repos\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End_Content.g.cs
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\Ollama GUI Front End_Content.g.cs

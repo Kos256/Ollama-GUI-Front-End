@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\kosai\Source\Repos\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\obj\Debug\net8.0-windows\
 Ollama_GUI_Front_End
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\Users\kosai\Source\Repos\Ollama-GUI-Front-End\Ollama GUI Front End\App.xaml
+C:\Users\kosai\source\repos\Ollama GUI Front End\Ollama-GUI-Front-End\Ollama GUI Front End\App.xaml
 11407045341
 11737473241
 6687989714
-202-355679124
+202723026152
 MainWindow.xaml;
 
-False
+True
 

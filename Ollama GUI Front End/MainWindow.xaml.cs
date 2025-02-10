@@ -25,7 +25,7 @@ using System.Xml;
 /*
  * TO-DO: 
  * 
- * > Add memory to the AI
+ * > Add memory to the AI (That scales with memory cap)
  * > Add a prompt to the AI
  * > Fix memory cap buttons
  * > Add model selection menu

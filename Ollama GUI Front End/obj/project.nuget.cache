@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yjcLRcQcGIA=",
+  "dgSpecHash": "aj+j2B8SWPo=",
   "success": true,
-  "projectFilePath": "C:\\Users\\kosai\\Source\\Repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
+  "projectFilePath": "C:\\Users\\kosai\\source\\repos\\Ollama GUI Front End\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kosai\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\9.0.0\\microsoft.bcl.asyncinterfaces.9.0.0.nupkg.sha512",
     "C:\\Users\\kosai\\.nuget\\packages\\microsoft.extensions.ai.abstractions\\9.1.0-preview.1.25064.3\\microsoft.extensions.ai.abstractions.9.1.0-preview.1.25064.3.nupkg.sha512",

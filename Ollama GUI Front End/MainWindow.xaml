@@ -146,7 +146,7 @@
                             <ImageBrush ImageSource="/Assets/Icons/minus.png" Stretch="Uniform"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="memCapBtnIncrease" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="47" Click="memCapBtnIncrease_Click" BorderBrush="White" BorderThickness="2" Foreground="White" FontSize="20" Margin="256,70,0,0">
+                    <Button x:Name="memCapBtnIncrease" HorizontalAlignment="Right" Height="47" VerticalAlignment="Top" Width="47" Click="memCapBtnIncrease_Click" BorderBrush="White" BorderThickness="2" Foreground="White" FontSize="20" Margin="0,70,76,0">
                         <Button.Background>
                             <ImageBrush ImageSource="/Assets/Icons/plus.png" Stretch="Uniform"/>
                         </Button.Background>

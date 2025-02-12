@@ -3,5 +3,6 @@
   "Conversations": {},
   "Settings": {
     "MemoryCap": 20
+	"LastSelectedModel": "none"
   }
 }

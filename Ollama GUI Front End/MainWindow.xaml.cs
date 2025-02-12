@@ -25,13 +25,11 @@ using System.Xml;
 
 /*
  * TO-DO: 
- * 
- * > Add memory to the LLM (That scales with memory cap)
- * > Add a prompt to the LLM
- * > Add model selection menu
+ * > Select first installed model it can find if the value in savedata is "none"
+ * > Scale memory of the LLM with memory cap
+ * > Make memcap evaluate numbers like 050 to 50 (trim any zeros before the actual number)
  * > Add model browser button (pops out a new window)
  * > MD to RTF parser (for user + LLM)
- * > Conversation settings, add a remember memory cap checkbox setting
  * > Cancel generation button (interrupt the LLM generation)
  * 
  * Later:
@@ -72,11 +70,10 @@ namespace Ollama_GUI_Front_End
         private List<KeyValuePair<bool, string>> conversationMemory = new List<KeyValuePair<bool, string>>();
         private string llmPrompt =
             "You are an AI assistant that helps out with the user's queries. You may conversate if you feel like it." +
-            "\n" +
-            "\nHere's what you need to know about the current conversation's context:" +
+            "\n\nHere's what you need to know about the current conversation's context:" +
             "\nThe user's name: {username}" +
-            "\nRemember: Do not try to frequently refer to their name, keep its frequency varied between every 5 to 6 messages." +
-            "Also take note if the name provided looks like a full name. If it is a full name, use their first name when you need to refer to them" +
+            "\nRemember: Do not try to frequently refer to their name, keep its frequency varied between every 5 to 6 messages. " +
+            "Also take note if the name provided looks like a full name. If it is a full name, use their first name when you need to refer to them " +
             "(unless explicitly told by the user to refer using full name as well)." +
             "\nYour previous message:" +
             "\n'''{msgB}'''" + // msgB = message by bot
@@ -86,7 +83,11 @@ namespace Ollama_GUI_Front_End
             "\nHere is the whole conversation {convolead}" +
             "\n{conversation}" +
             "\n\n" +
-            "\nNow your response should be the next message in the conversation, or more appropriately a response to the user's current message maintaining context with your previous message and the conversation history."
+
+            "\n\nA certain thing to note: Whenever you see a triple apostrophe, that is strictly marked as the beginning or ending of the wrapped content. " +
+            "For example: If you see 4 apostrophes at the end, that means that content originally had one apostrophe appended to it. Keep this in mind: " +
+            "you WILL NOT replicate this formatting, this is strictly only for your reference. Do not wrap your response in triple apostrophes. " +
+            "\n\nNow your response should be the next message in the conversation, or more appropriately a response to the user's current message maintaining context with your previous message and the conversation history."
         ;
         // -------------------------------------
 
@@ -265,7 +266,7 @@ namespace Ollama_GUI_Front_End
 
                     try
                     {
-                        ollama.SelectedModel = "llama3.1:latest";
+                        ollama.SelectedModel = "llama3.1:latest"; // remove this and replace it with first model got
                     }
                     catch (Exception ex)
                     {
@@ -344,6 +345,7 @@ namespace Ollama_GUI_Front_End
 
         private async Task LoadModelsAsync()
         {
+            // you left off here: first item in todo (select first model if lastselectedmodel = "none")
             loadingSubtitle.Text = "Retrieving installed models...";
             try
             {
@@ -353,13 +355,26 @@ namespace Ollama_GUI_Front_End
                 {
                     sb.AppendLine($"Name: {model.Name}, Size: {model.Size}");
 
+                    LinearGradientBrush normalGradient = new LinearGradientBrush();
+                    normalGradient.StartPoint = new Point(0.5, 0);
+                    normalGradient.EndPoint = new Point(0.5, 1);
+                    normalGradient.GradientStops.Add(new GradientStop(Color.FromRgb(0, 86, 125), 0f));
+                    normalGradient.GradientStops.Add(new GradientStop(Color.FromRgb(0, 60, 102), 1f));
+
+                    LinearGradientBrush hoverGradient = new LinearGradientBrush();
+                    normalGradient.StartPoint = new Point(0.5, 0);
+                    normalGradient.EndPoint = new Point(0.5, 1);
+                    normalGradient.GradientStops.Add(new GradientStop(Color.FromRgb(0, 120, 180), 0f));  // Brighter
+                    normalGradient.GradientStops.Add(new GradientStop(Color.FromRgb(0, 90, 160), 1f));  // Brighter
+
                     Border listItemBorder = new Border
                     {
-                        Background = new SolidColorBrush(Colors.Black),
-                        BorderBrush = new SolidColorBrush(Colors.White),
+                        //Background = new SolidColorBrush(Color.FromRgb(0, 60, 102)),
+                        Background = normalGradient,
+                        BorderBrush = new SolidColorBrush(Color.FromRgb(0, 183, 255)),
                         BorderThickness = new Thickness(2),
-                        CornerRadius = new CornerRadius(5),
-                        Padding = new Thickness(10),
+                        //CornerRadius = new CornerRadius(5),
+                        Padding = new Thickness(5),
                         Margin = new Thickness(10, 10, 10, 0),
 
                         HorizontalAlignment = HorizontalAlignment.Stretch,
@@ -374,11 +389,71 @@ namespace Ollama_GUI_Front_End
                         TextWrapping = TextWrapping.Wrap
                     };
                     var litxt = listItemBorder.Child as TextBlock; // (li)st item (txt) block
+                    listItemBorder.MouseLeave += (s, e) =>
+                    {
+                        listItemBorder.Background = normalGradient;
+                        listItemBorder.BorderBrush = new SolidColorBrush(Color.FromRgb(0, 183, 255));
+                    };
+                    listItemBorder.MouseEnter += (s, e) => listItemBorder.Background = new LinearGradientBrush
+                    {
+                        StartPoint = new Point(0.5, 0),
+                        EndPoint = new Point(0.5, 1),
+                        GradientStops =
+                        {
+                            new GradientStop(Color.FromRgb(0, 134, 217), 0f), // Brighter color
+                            new GradientStop(Color.FromRgb(0, 108, 191), 1f)    // Brighter color
+                        }
+                    };
+                    listItemBorder.MouseLeftButtonDown += (s, e) =>
+                    {
+                        listItemBorder.Background = new LinearGradientBrush
+                        {
+                            StartPoint = new Point(0.5, 0),
+                            EndPoint = new Point(0.5, 1),
+                            GradientStops =
+                            {
+                                new GradientStop(Color.FromRgb(0, 153, 13), 0f), // Pressed color
+                                new GradientStop(Color.FromRgb(0, 115, 10), 1f)    // Pressed color
+                            }
+                        };
+                        listItemBorder.BorderBrush = new SolidColorBrush(Color.FromRgb(0, 200, 0));
+
+                        saveData.Settings.LastSelectedModel = (listItemBorder.Child as TextBlock).Text;
+                        SaveAppSaveData(saveData);
+                        try
+                        {
+                            ollama.SelectedModel = saveData.Settings.LastSelectedModel;
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error while setting model", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        selectedModelText.Text = "Selected: " + (listItemBorder.Child as TextBlock).Text;
+                    };
+                    listItemBorder.MouseLeftButtonUp += (s, e) =>
+                    {
+                        listItemBorder.Background = new LinearGradientBrush
+                        {
+                            StartPoint = new Point(0.5, 0),
+                            EndPoint = new Point(0.5, 1),
+                            GradientStops =
+                            {
+                                new GradientStop(Color.FromRgb(0, 201, 17), 0f), // Released color
+                                new GradientStop(Color.FromRgb(0, 153, 13), 1f)    // Released color
+                            }
+                        };
+                        listItemBorder.BorderBrush = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                    };
+
+                    if (saveData.Settings.LastSelectedModel != "none")
+                    {
+                        if ((listItemBorder.Child as TextBlock).Text == saveData.Settings.LastSelectedModel) {
+                            selectedModelText.Text = "Selected: " + (listItemBorder.Child as TextBlock).Text;
+                        }
+                    }
 
                     modelListSP.Children.Add(listItemBorder);
                 }
-
-
 
                 loadingTitle.Text = "All set!";
                 loadingTitle.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
@@ -969,7 +1044,8 @@ namespace Ollama_GUI_Front_End
                     IsFirstRun = true,
                     Settings = new UserSettings
                     {
-                        MemoryCap = 20
+                        MemoryCap = 20,
+                        LastSelectedModel = "none"
                     }
                 };
 
@@ -1020,5 +1096,6 @@ namespace Ollama_GUI_Front_End
     public class UserSettings
     {
         public int MemoryCap { get; set; }
+        public string LastSelectedModel { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.DirectoryServices.AccountManagement
+using System.DirectoryServices.AccountManagement;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -65,20 +65,25 @@ namespace Ollama_GUI_Front_End
 
 
         // Values for LLM conversation ---------
+        private string userInput;
         private int memcap;
         private string botOutput;
-        private Dictionary<bool, string> conversationMemory = new Dictionary<bool, string>();
+        private string botLastOutput = "";
+        private List<KeyValuePair<bool, string>> conversationMemory = new List<KeyValuePair<bool, string>>();
         private string llmPrompt =
             "You are an AI assistant that helps out with the user's queries. You may conversate if you feel like it." +
             "\n" +
             "\nHere's what you need to know about the current conversation's context:" +
-            "\nThe user's alias: {username}" +
+            "\nThe user's name: {username}" +
+            "\nRemember: Do not try to frequently refer to their name, keep its frequency varied between every 5 to 6 messages." +
+            "Also take note if the name provided looks like a full name. If it is a full name, use their first name when you need to refer to them" +
+            "(unless explicitly told by the user to refer using full name as well)." +
             "\nYour previous message:" +
             "\n'''{msgB}'''" + // msgB = message by bot
             "\nThe user's current message:" +
             "\n'''{msgU}'''" + // msgU = message by user
             "\n\n" +
-            "\nHere is the whole conversation so far. These are the last {memcap} messages from this conversation (the bottom one being the last message):" +
+            "\nHere is the whole conversation {convolead}" +
             "\n{conversation}" +
             "\n\n" +
             "\nNow your response should be the next message in the conversation, or more appropriately a response to the user's current message maintaining context with your previous message and the conversation history."
@@ -100,7 +105,7 @@ namespace Ollama_GUI_Front_End
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show(Environment.UserDomainName);
+            //using (var context = new PrincipalContext(ContextType.Machine))
             this.Closing += ApplicationWantsToQuit;
             this.StateChanged += ApplicationStateChanged;
 
@@ -120,6 +125,7 @@ namespace Ollama_GUI_Front_End
             memcap = saveData.Settings.MemoryCap;
             memoryCapTextbox.Text = memcap.ToString();
             if (memcap == 0) memoryCapTextbox.Text = "No cap";
+            _UserDisplayName = UserPrincipal.Current.DisplayName;
 
             // source 0 for loading anim
             // source 1 for winctrl kbd shortcut
@@ -553,7 +559,7 @@ namespace Ollama_GUI_Front_End
                     };
                     userInput = textInput.Text;
                     textInput.Text = "";
-                    conversationMemory.Add(false, userInput);
+                    conversationMemory.Add(new KeyValuePair<bool, string>(false, userInput));
 
                     chatStackPanel.Children.Add(userMsg);
                     chatScroller.ScrollToBottom();
@@ -593,7 +599,7 @@ namespace Ollama_GUI_Front_End
                     botOutput = "";
                     await INTERNAL_GenerateResponseStreams(userInput, botMsgTextBlock);
 
-                    conversationMemory.Add(true, botOutput);
+                    conversationMemory.Add(new KeyValuePair<bool, string>(true, botOutput));
                 });
             });
             
@@ -601,7 +607,27 @@ namespace Ollama_GUI_Front_End
 
         private async Task INTERNAL_GenerateResponseStreams(string userInput, TextBlock botMsgTextBlock)
         {
-            string formattedPrompt = llmPrompt.Replace("msgU", $"\"{Environment.UserName}\"");
+            // These are the last {memcap} messages from this conversation (the bottom one being the last message):
+            StringBuilder conversationMemorySB = new StringBuilder();
+            string formattedPrompt = llmPrompt;
+
+            foreach (var message in conversationMemory)
+            {
+                string sender = (message.Key) ? "You:" : "User:";
+                conversationMemorySB.Append($"{sender} {message.Value}\n\n");
+            }
+            formattedPrompt = formattedPrompt
+                .Replace("{username}", _UserDisplayName)
+                .Replace("{msgB}", botLastOutput)
+                .Replace("{msgU}", userInput)
+                .Replace("{conversation}", conversationMemorySB.ToString())
+                .Replace("{convolead}", 
+                    (memcap>0)
+                    ?"so far. These are the last {memcap} messages from this conversation (the bottom one being the last message):"
+                    :"(with the bottom message being the latest message):"
+                )
+            ;
+            
             await foreach (var stream in ollama.GenerateAsync(formattedPrompt))
             {
                 Dispatcher.Invoke(() =>
@@ -615,6 +641,8 @@ namespace Ollama_GUI_Front_End
 
             textInput.IsReadOnly = false;
             textInput.Foreground = new SolidColorBrush(Colors.White);
+
+            
         }
 
         private void FadeOutLandingUI()
@@ -684,7 +712,7 @@ namespace Ollama_GUI_Front_End
         {
             if (e.Key == Key.Enter)
             {
-                if (memoryCapTextbox.Text.Length > 5) MessageBox.Show("Implement rejection feature");
+                if (memoryCapTextbox.Text.Length > 5) throw new NotImplementedException();//MessageBox.Show("Implement rejection feature");
                 memcap = int.Parse(memoryCapTextbox.Text);
                 if (memcap > maxMemoryCap) memoryCapTextbox.Text = saveData.Settings.MemoryCap.ToString();
                 textInput.Focus();

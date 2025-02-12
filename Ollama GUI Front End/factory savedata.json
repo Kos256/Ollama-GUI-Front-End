@@ -2,7 +2,7 @@
   "IsFirstRun": true,
   "Conversations": {},
   "Settings": {
-    "MemoryCap": 20
+    "MemoryCap": 20,
 	"LastSelectedModel": "none"
   }
 }

@@ -57,10 +57,6 @@
             "OllamaSharp": {
               "target": "Package",
               "version": "[5.0.5, )"
-            },
-            "System.DirectoryServices.AccountManagement": {
-              "target": "Package",
-              "version": "[9.0.2, )"
             }
           },
           "imports": [

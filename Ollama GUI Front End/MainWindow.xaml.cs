@@ -1,7 +1,8 @@
-﻿using OllamaSharp;
+﻿using OllamaSharp; // the legend himself
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.DirectoryServices.AccountManagement
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -25,17 +26,21 @@ using System.Xml;
 /*
  * TO-DO: 
  * 
- * > Add memory to the AI (That scales with memory cap)
- * > Add a prompt to the AI
- * > Fix memory cap buttons
+ * > Add memory to the LLM (That scales with memory cap)
+ * > Add a prompt to the LLM
  * > Add model selection menu
  * > Add model browser button (pops out a new window)
- * > MD to RTF parser (for user + AI)
+ * > MD to RTF parser (for user + LLM)
  * > Conversation settings, add a remember memory cap checkbox setting
+ * > Cancel generation button (interrupt the LLM generation)
  * 
  * Later:
  * > Add Win + DownArrow
+ * > Add about section, with easter eggs. Links to vixile and my github.
+ * > Add a ram warning that is shown when the memory cap is set to 0. Also allow for a savedata option to not show the warning next time.
  */
+
+
 
 namespace Ollama_GUI_Front_End
 {
@@ -47,6 +52,7 @@ namespace Ollama_GUI_Front_End
         public bool intentionallyClosed = false;
         public bool intentionallyMinimized = false;
         public bool firstTimeSession = false;
+        public string _UserDisplayName;
         public AppSaveData saveData;
 
         public OllamaApiClient ollama = new OllamaApiClient("http://localhost:11434");
@@ -56,11 +62,45 @@ namespace Ollama_GUI_Front_End
 
         private int scrollViewerDefaultHeight, windowDefaultHeight; // constant ui measurements
         public int maxMemoryCap = 200; // constant values
-        private int memcap;
 
+
+        // Values for LLM conversation ---------
+        private int memcap;
+        private string botOutput;
+        private Dictionary<bool, string> conversationMemory = new Dictionary<bool, string>();
+        private string llmPrompt =
+            "You are an AI assistant that helps out with the user's queries. You may conversate if you feel like it." +
+            "\n" +
+            "\nHere's what you need to know about the current conversation's context:" +
+            "\nThe user's alias: {username}" +
+            "\nYour previous message:" +
+            "\n'''{msgB}'''" + // msgB = message by bot
+            "\nThe user's current message:" +
+            "\n'''{msgU}'''" + // msgU = message by user
+            "\n\n" +
+            "\nHere is the whole conversation so far. These are the last {memcap} messages from this conversation (the bottom one being the last message):" +
+            "\n{conversation}" +
+            "\n\n" +
+            "\nNow your response should be the next message in the conversation, or more appropriately a response to the user's current message maintaining context with your previous message and the conversation history."
+        ;
+        // -------------------------------------
+
+        /*
+         * Why use a bool for the key in conversation memory?
+         * 
+         * There is a value needed to differentiate if this message was sent by either the LLM or user.
+         * Now of course this value is extremely simple, so it is good practice to not allowcate unneccesary amounts of r
+         * The boolean corresponds to if the message was from a generated source or not.
+         * Thus, true is the LLM and false is the user.
+         * 
+         * In v2, there are plans to make that bool key into an int key, that way maybe many users or many LLMs can chat on the same conversation.
+         * This is just an idea though, I might not have the motivation to add it.
+         * 
+         */
         public MainWindow()
         {
             InitializeComponent();
+            MessageBox.Show(Environment.UserDomainName);
             this.Closing += ApplicationWantsToQuit;
             this.StateChanged += ApplicationStateChanged;
 
@@ -513,6 +553,7 @@ namespace Ollama_GUI_Front_End
                     };
                     userInput = textInput.Text;
                     textInput.Text = "";
+                    conversationMemory.Add(false, userInput);
 
                     chatStackPanel.Children.Add(userMsg);
                     chatScroller.ScrollToBottom();
@@ -549,8 +590,10 @@ namespace Ollama_GUI_Front_End
                     chatStackPanel.Children.Add(botMsg);
                     chatScroller.ScrollToBottom();
 
+                    botOutput = "";
                     await INTERNAL_GenerateResponseStreams(userInput, botMsgTextBlock);
 
+                    conversationMemory.Add(true, botOutput);
                 });
             });
             
@@ -558,10 +601,12 @@ namespace Ollama_GUI_Front_End
 
         private async Task INTERNAL_GenerateResponseStreams(string userInput, TextBlock botMsgTextBlock)
         {
-            await foreach (var stream in ollama.GenerateAsync(userInput))
+            string formattedPrompt = llmPrompt.Replace("msgU", $"\"{Environment.UserName}\"");
+            await foreach (var stream in ollama.GenerateAsync(formattedPrompt))
             {
                 Dispatcher.Invoke(() =>
                 {
+                    botOutput += stream.Response;
                     botMsgTextBlock.Text += stream.Response;
                 });
 

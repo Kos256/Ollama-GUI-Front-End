@@ -59,7 +59,7 @@ namespace Ollama_GUI_Front_End {
             
             #line default
             #line hidden
-            System.Uri resourceLocater = new System.Uri("/Ollama GUI Front End;component/app.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Ollama GUI Front End;V1.0.0.0;component/app.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

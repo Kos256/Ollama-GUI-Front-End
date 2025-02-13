@@ -1079,6 +1079,11 @@ namespace Ollama_GUI_Front_End
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private bool IsStringNumeric(string text)
         {
             Regex regex = new Regex("[^0-9]+"); // Allows only numeric characters

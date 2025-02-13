@@ -1,14 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\",
+  "WorkspaceRootPath": "C:\\Users\\TestUser\\Documents\\GitHub\\Ollama-GUI-Front-End\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|c:\\users\\kosai\\source\\repos\\ollama-gui-front-end\\ollama gui front end\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|solutionrelative:ollama gui front end\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|src\\Ollama GUI Front End.csproj|c:\\users\\testuser\\documents\\github\\ollama-gui-front-end\\src\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|src\\Ollama GUI Front End.csproj|solutionrelative:src\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|c:\\users\\kosai\\source\\repos\\ollama-gui-front-end\\ollama gui front end\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|solutionrelative:ollama gui front end\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|src\\Ollama GUI Front End.csproj|c:\\users\\testuser\\documents\\github\\ollama-gui-front-end\\src\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|src\\Ollama GUI Front End.csproj|solutionrelative:src\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\9.0.101\\Sdks\\Microsoft.NET.Sdk.WindowsDesktop\\targets\\Microsoft.WinFX.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +21,52 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "Ollama GUI Front End\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\MainWindow.xaml",
-              "RelativeToolTip": "Ollama GUI Front End\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-08T17:32:25.016Z",
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\TestUser\\Documents\\GitHub\\Ollama-GUI-Front-End\\src\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "src\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\TestUser\\Documents\\GitHub\\Ollama-GUI-Front-End\\src\\MainWindow.xaml.cs",
+              "RelativeToolTip": "src\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAFYCAAAAAAAAAAAhwAwBAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T23:20:26.038Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Ollama GUI Front End\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\MainWindow.xaml.cs",
-              "RelativeToolTip": "Ollama GUI Front End\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAABaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-08T17:32:14.463Z",
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\TestUser\\Documents\\GitHub\\Ollama-GUI-Front-End\\src\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "src\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\TestUser\\Documents\\GitHub\\Ollama-GUI-Front-End\\src\\MainWindow.xaml",
+              "RelativeToolTip": "src\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-12T23:01:00.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Microsoft.WinFX.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\Sdks\\Microsoft.NET.Sdk.WindowsDesktop\\targets\\Microsoft.WinFX.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.101\\Sdks\\Microsoft.NET.Sdk.WindowsDesktop\\targets\\Microsoft.WinFX.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\Sdks\\Microsoft.NET.Sdk.WindowsDesktop\\targets\\Microsoft.WinFX.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\9.0.101\\Sdks\\Microsoft.NET.Sdk.WindowsDesktop\\targets\\Microsoft.WinFX.targets",
+              "ViewState": "AgIAALICAAAAAAAAAAAawMICAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-02-12T22:53:58.777Z",
               "EditorCaption": ""
             }
           ]

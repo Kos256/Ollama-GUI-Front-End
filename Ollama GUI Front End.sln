@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Blend for Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ollama GUI Front End", "Ollama GUI Front End\Ollama GUI Front End.csproj", "{0E64074F-31A8-4EB2-946B-115E7230DC92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "src", "src\Ollama GUI Front End.csproj", "{0E64074F-31A8-4EB2-946B-115E7230DC92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

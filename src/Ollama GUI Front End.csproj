@@ -1,0 +1,119 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>Ollama_GUI_Front_End</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="assets\controls\**" />
+    <EmbeddedResource Remove="assets\controls\**" />
+    <None Remove="assets\controls\**" />
+    <Page Remove="assets\controls\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="app icon.png" />
+    <None Remove="assets\app.png" />
+    <None Remove="assets\fonts\Exo\Black.otf" />
+    <None Remove="assets\fonts\Exo\BlackItalic.otf" />
+    <None Remove="assets\fonts\Exo\Bold.otf" />
+    <None Remove="assets\fonts\Exo\BoldItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo Black.otf" />
+    <None Remove="assets\fonts\Exo\Exo BlackItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo Bold.otf" />
+    <None Remove="assets\fonts\Exo\Exo BoldItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo ExtraBold.otf" />
+    <None Remove="assets\fonts\Exo\Exo ExtraBoldItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo ExtraLight.otf" />
+    <None Remove="assets\fonts\Exo\Exo ExtraLightItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo Italic.otf" />
+    <None Remove="assets\fonts\Exo\Exo Light.otf" />
+    <None Remove="assets\fonts\Exo\Exo LightItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo Medium.otf" />
+    <None Remove="assets\fonts\Exo\Exo MediumItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo Regular.otf" />
+    <None Remove="assets\fonts\Exo\Exo SemiBold.otf" />
+    <None Remove="assets\fonts\Exo\Exo SemiBoldItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo Thin.otf" />
+    <None Remove="assets\fonts\Exo\Exo ThinItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-Black.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-BlackItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-Bold.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-BoldItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-ExtraBold.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-ExtraBoldItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-ExtraLight.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-ExtraLightItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-Italic.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-Light.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-LightItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-Medium.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-MediumItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-Regular.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-SemiBold.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-SemiBoldItalic.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-Thin.otf" />
+    <None Remove="assets\fonts\Exo\Exo2.0-ThinItalic.otf" />
+    <None Remove="assets\fonts\Exo\ExtraBold.otf" />
+    <None Remove="assets\fonts\Exo\ExtraBoldItalic.otf" />
+    <None Remove="assets\fonts\Exo\ExtraLight.otf" />
+    <None Remove="assets\fonts\Exo\ExtraLightItalic.otf" />
+    <None Remove="assets\fonts\Exo\Italic.otf" />
+    <None Remove="assets\fonts\Exo\Light.otf" />
+    <None Remove="assets\fonts\Exo\LightItalic.otf" />
+    <None Remove="assets\fonts\Exo\Medium.otf" />
+    <None Remove="assets\fonts\Exo\MediumItalic.otf" />
+    <None Remove="assets\fonts\Exo\Regular.otf" />
+    <None Remove="assets\fonts\Exo\SemiBold.otf" />
+    <None Remove="assets\fonts\Exo\SemiBoldItalic.otf" />
+    <None Remove="assets\fonts\Exo\Thin.otf" />
+    <None Remove="assets\fonts\Exo\ThinItalic.otf" />
+    <None Remove="assets\icons\minus.png" />
+    <None Remove="assets\icons\plug.svg" />
+    <None Remove="assets\icons\plus.png" />
+    <None Remove="close.png" />
+    <None Remove="Screenshot 2023-03-05 135529.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="assets\app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="OllamaSharp" Version="5.0.5" />
+    <PackageReference Include="System.DirectoryServices.AccountManagement" Version="9.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\applegacy.png" />
+    <Resource Include="assets\app.png" />
+    <Resource Include="assets\fonts\Exo\Exo Black.otf" />
+    <Resource Include="assets\fonts\Exo\Exo BlackItalic.otf" />
+    <Resource Include="assets\fonts\Exo\Exo Bold.otf" />
+    <Resource Include="assets\fonts\Exo\Exo BoldItalic.otf" />
+    <Resource Include="assets\fonts\Exo\Exo ExtraBold.otf" />
+    <Resource Include="assets\fonts\Exo\Exo ExtraBoldItalic.otf" />
+    <Resource Include="assets\fonts\Exo\Exo ExtraLight.otf" />
+    <Resource Include="assets\fonts\Exo\Exo ExtraLightItalic.otf" />
+    <Resource Include="assets\fonts\Exo\Exo Italic.otf" />
+    <Resource Include="assets\fonts\Exo\Exo Light.otf" />
+    <Resource Include="assets\fonts\Exo\Exo LightItalic.otf" />
+    <Resource Include="assets\fonts\Exo\Exo Medium.otf" />
+    <Resource Include="assets\fonts\Exo\Exo MediumItalic.otf" />
+    <Resource Include="assets\fonts\Exo\Exo Regular.otf" />
+    <Resource Include="assets\fonts\Exo\Exo SemiBold.otf" />
+    <Resource Include="assets\fonts\Exo\Exo SemiBoldItalic.otf" />
+    <Resource Include="assets\fonts\Exo\Exo Thin.otf" />
+    <Resource Include="assets\fonts\Exo\Exo ThinItalic.otf" />
+    <Resource Include="assets\icons\minus.png" />
+    <Resource Include="assets\icons\plus.png" />
+  </ItemGroup>
+
+</Project>

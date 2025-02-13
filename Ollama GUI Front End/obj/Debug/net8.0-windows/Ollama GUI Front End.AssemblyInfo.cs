@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ollama GUI Front End")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+927e3de1b06e44938992a1615b7f2ba4c8300dac")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ead28c016c44c7dd713135655508f7c025d4599")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ollama GUI Front End")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ollama GUI Front End")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

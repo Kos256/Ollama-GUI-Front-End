@@ -602,11 +602,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kosai\\Source\\Repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
+      "projectUniqueName": "C:\\Users\\kosai\\source\\repos\\Ollama GUI Front End\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
       "projectName": "Ollama GUI Front End",
-      "projectPath": "C:\\Users\\kosai\\Source\\Repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
+      "projectPath": "C:\\Users\\kosai\\source\\repos\\Ollama GUI Front End\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
       "packagesPath": "C:\\Users\\kosai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kosai\\Source\\Repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\obj\\",
+      "outputPath": "C:\\Users\\kosai\\source\\repos\\Ollama GUI Front End\\Ollama-GUI-Front-End\\Ollama GUI Front End\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -677,7 +677,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

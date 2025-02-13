@@ -351,9 +351,17 @@ namespace Ollama_GUI_Front_End
             {
                 StringBuilder sb = new StringBuilder();
                 var models = await ollama.ListLocalModelsAsync();
+
+                if (!models.Any())
+                {
+                    MessageBox.Show("There are no models installed! Install some models using the command line and then relaunch this program.", "No models", MessageBoxButton.OK, MessageBoxImage.Error);
+                    intentionallyClosed = true;
+                    this.Close();
+                }
+
                 foreach (var model in models)
                 {
-                    sb.AppendLine($"Name: {model.Name}, Size: {model.Size}");
+                    sb.AppendLine($"Name: {model.Name}, Size: {model.Size}"); // remove unused string builder naming list
 
                     LinearGradientBrush normalGradient = new LinearGradientBrush();
                     normalGradient.StartPoint = new Point(0.5, 0);
@@ -447,9 +455,14 @@ namespace Ollama_GUI_Front_End
 
                     if (saveData.Settings.LastSelectedModel != "none")
                     {
+
                         if ((listItemBorder.Child as TextBlock).Text == saveData.Settings.LastSelectedModel) {
                             selectedModelText.Text = "Selected: " + (listItemBorder.Child as TextBlock).Text;
                         }
+                    }
+                    else
+                    {
+                        ollama.SelectedModel = models.First().Name;
                     }
 
                     modelListSP.Children.Add(listItemBorder);

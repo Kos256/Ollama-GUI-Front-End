@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "trgs1/o4obE=",
+  "dgSpecHash": "DoYoCTfS9WQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\kosai\\Source\\Repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
+  "projectFilePath": "C:\\Users\\kosai\\source\\repos\\Ollama GUI Front End\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kosai\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\9.0.0\\microsoft.bcl.asyncinterfaces.9.0.0.nupkg.sha512",
     "C:\\Users\\kosai\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.2\\microsoft.bcl.cryptography.9.0.2.nupkg.sha512",

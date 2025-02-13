@@ -5,7 +5,7 @@ I used WPF to make a front-end application for Ollama. It's not too good but, it
 Make sure to **install ollama** before using this application. You can install ollama for windows [here](https://ollama.com/download/OllamaSetup.exe).
 
 ##  *Please note this is in a heavy alpha state, the base work is barely laid out!* 
-Shoutout to [OllamaSharp](https://github.com/awaescher/OllamaSharp)!
+Shoutout to [OllamaSharp](https://github.com/awaescher/OllamaSharp) this package helped make this app actually work.
 
 ## Upcoming features
 - Nicer formatting for deep thinking models

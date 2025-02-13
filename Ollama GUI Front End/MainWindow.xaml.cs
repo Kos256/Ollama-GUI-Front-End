@@ -693,6 +693,11 @@ namespace Ollama_GUI_Front_End
             
         }
 
+        private void AddToConversationMemory(bool speaker, string message)
+        {
+
+        }
+
         private async Task INTERNAL_GenerateResponseStreams(string userInput, TextBlock botMsgTextBlock)
         {
             // These are the last {memcap} messages from this conversation (the bottom one being the last message):

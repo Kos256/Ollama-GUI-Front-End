@@ -1,10 +1,11 @@
+[![AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 # Ollama GUI Front End - v0.2.1 Alpha
 
 ## What is this?
 I used WPF to make a front-end application for Ollama. It's not too good but, it is what it is ¯\\_(ツ)\_/¯. 
-Make sure to **install ollama** before using this application. You can install ollama for windows [here](https://ollama.com/download/OllamaSetup.exe).
+Make sure to **install Ollama** before using this application. You can install ollama for windows [here](https://ollama.com/download/OllamaSetup.exe).
 
-##  *Please note this is in a heavy alpha state, the base work is barely laid out!* 
+##  *Please note this is in a early alpha stage, the base work is barely laid out!* 
 Shoutout to [OllamaSharp](https://github.com/awaescher/OllamaSharp) this package helped make this app actually work.
 
 ## Upcoming features
@@ -22,3 +23,7 @@ Shoutout to [OllamaSharp](https://github.com/awaescher/OllamaSharp) this package
 
 NOTE: This App only works on __Windows__ as WPF is a .NET and Windows dependent GUI framework.
 If you’re on Linux or macOS… go ahead. fork this repo, you're doing us a favor haha.
+For Linux, you could use [Wine](https://www.winehq.org/) and make sure to get [.NET](https://learn.microsoft.com/en-us/dotnet/core/install/linux) if you want to build the project.
+
+## License
+This project is licensed under the **AGPL v3**. See the [full license](https://www.gnu.org/licenses/agpl-3.0).

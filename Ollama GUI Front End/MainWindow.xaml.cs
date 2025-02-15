@@ -22,6 +22,7 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Net.Http.Json;
 using System.Xml;
+using System.Security.Cryptography.X509Certificates;
 
 /*
  * TO-DO: 
@@ -36,6 +37,17 @@ using System.Xml;
  * > Add Win + DownArrow
  * > Add about section, with easter eggs. Links to vixile and my github.
  * > Add a ram warning that is shown when the memory cap is set to 0. Also allow for a savedata option to not show the warning next time.
+ * 
+ * Yogurt branch to merge:
+ * 1. Main project folder assembly to src (make sure to fix sln file)
+ */
+
+/*
+ * Version 2:
+ * 
+ * - Customizable colors
+ * - Support for models that can interact with both text + images
+ * - Maybe....canvas feature from chatgpt? Make code conversation easier to edit and ask... Althought might be a v3 feature
  */
 
 
@@ -47,10 +59,12 @@ namespace Ollama_GUI_Front_End
     /// </summary>
     public partial class MainWindow : Window
     {
-        public bool intentionallyClosed = false;
-        public bool intentionallyMinimized = false;
-        public bool firstTimeSession = false;
+        public bool _intentionallyClosed = false;
+        public bool _intentionallyClosedByAnimation = false;
+        public bool _intentionallyMinimized = false;
         public string _UserDisplayName;
+
+        public bool firstTimeSession = false;
         public AppSaveData saveData;
 
         public OllamaApiClient ollama = new OllamaApiClient("http://localhost:11434");
@@ -87,6 +101,7 @@ namespace Ollama_GUI_Front_End
             "\n\nA certain thing to note: Whenever you see a triple apostrophe, that is strictly marked as the beginning or ending of the wrapped content. " +
             "For example: If you see 4 apostrophes at the end, that means that content originally had one apostrophe appended to it. Keep this in mind: " +
             "you WILL NOT replicate this formatting, this is strictly only for your reference. Do not wrap your response in triple apostrophes. " +
+            "Do not generate a response for the user, generate only on your behalf. Do not include any predictions about what the user might say unless explicitly told by the conversation in context. Most of the times, however, you will not predict what the user will say." +
             "\n\nNow your response should be the next message in the conversation, or more appropriately a response to the user's current message maintaining context with your previous message and the conversation history."
         ;
         // -------------------------------------
@@ -103,6 +118,9 @@ namespace Ollama_GUI_Front_End
          * This is just an idea though, I might not have the motivation to add it.
          * 
          */
+
+        private Stopwatch _globalStopwatch = new Stopwatch();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -116,8 +134,10 @@ namespace Ollama_GUI_Front_End
             this.Opacity = 0;
             windowBarCollider.MouseLeftButtonDown += (s, e) => DragMove();
             MainGrid.Visibility = Visibility.Hidden;
+            ModelBrowserWaitOverlayGrid.Visibility = Visibility.Hidden;
             scrollViewerDefaultHeight = (int)chatScroller.Height;
             windowDefaultHeight = (int)this.Height;
+            _globalStopwatch.Start();
 
             textInput.Text = "Send a message";
             textInput.Foreground = new SolidColorBrush(Colors.DarkGray);
@@ -130,9 +150,10 @@ namespace Ollama_GUI_Front_End
 
             // source 0 for loading anim
             // source 1 for winctrl kbd shortcut
-            manualCancelSources = new List<bool> { false, false };
+            // source 2 for model browser wait overlay anim
+            manualCancelSources = new List<bool> { false, false, false };
 
-            WindowControlKeyboardShortcuts();
+            //WindowControlKeyboardShortcuts();
             firstTimeSession = saveData.IsFirstRun;
             Thread.Sleep(1000);
             WinIntro();
@@ -190,9 +211,6 @@ namespace Ollama_GUI_Front_End
                     gradientBrush = loadingRect.Fill as LinearGradientBrush;
                 });
 
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
-
                 bool isSubTextWelcome = false;
                 bool animationRan = false;
                 bool shouldQuit = false;
@@ -218,10 +236,10 @@ namespace Ollama_GUI_Front_End
                                 TransitionToMainGUI();
                             }
 
-                            gradientBrush.GradientStops[1].Offset = 0.5f + Math.Sin(stopwatch.Elapsed.TotalMilliseconds / 500) * 0.45f;
+                            gradientBrush.GradientStops[1].Offset = 0.5f + Math.Sin(_globalStopwatch.Elapsed.TotalMilliseconds / 500) * 0.45f;
                         });
 
-                        Thread.Sleep(16); // Add a slight delay to prevent high CPU usage
+                        Thread.Sleep(8); // Add a slight delay to prevent high CPU usage
                     }
                 });
             }
@@ -345,7 +363,6 @@ namespace Ollama_GUI_Front_End
 
         private async Task LoadModelsAsync()
         {
-            // you left off here: first item in todo (select first model if lastselectedmodel = "none")
             loadingSubtitle.Text = "Retrieving installed models...";
             try
             {
@@ -355,7 +372,7 @@ namespace Ollama_GUI_Front_End
                 if (!models.Any())
                 {
                     MessageBox.Show("There are no models installed! Install some models using the command line and then relaunch this program.", "No models", MessageBoxButton.OK, MessageBoxImage.Error);
-                    intentionallyClosed = true;
+                    _intentionallyClosed = true;
                     this.Close();
                 }
 
@@ -485,9 +502,71 @@ namespace Ollama_GUI_Front_End
             catch (Exception ex)
             {
                 MessageBox.Show($"Error retrieving models: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                intentionallyClosed = true;
+                _intentionallyClosed = true;
                 this.Close();
             }
+        }
+
+        private void openModelBrowserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ModelBrowserWaitOverlayGrid.Visibility = Visibility.Visible;
+            List<Rectangle> rects = new List<Rectangle>();
+
+            int rectCount = 10;
+            int rectWidth = 20;
+            int adjustableSpacing = 10;
+            int spacing = (rectWidth * 2 + adjustableSpacing);
+
+            for (int i = rectCount; i > 0; i--)
+            {
+                Rectangle tmprect = new Rectangle
+                {
+                    Width = rectWidth,
+                    Height = rectWidth,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Fill = new SolidColorBrush(Colors.White),
+
+
+                    //Margin = new Thickness(i * 50, 0, 0, 0)
+                };
+
+                
+                double centerOffset = (i*spacing) - (spacing*rectCount/2f + rectWidth + adjustableSpacing/2);
+
+                tmprect.Margin = new Thickness(centerOffset, 0, 0, 0);
+                rects.Add(tmprect);
+            }
+            foreach ( Rectangle rect in rects )
+            {
+                ModelBrowserWaitOverlayGrid.Children.Add(rect);
+            }
+
+
+            Task.Run(() => {
+                while (!manualCancelSources[2])
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        int i = 0;
+                        foreach (Rectangle rect in rects)
+                        {
+                            //rect.Height = Math.Abs(Math.Sin(180 * (_globalStopwatch.Elapsed.TotalMilliseconds + i * 100) / 1000 * Math.PI / 180)) * rect.Width * 2 + rect.Width / 2;
+                            rect.Margin = new Thickness(
+                                rect.Margin.Left,
+                                rect.Margin.Top,
+                                rect.Margin.Right,
+                                Math.Abs(Math.Sin((_globalStopwatch.Elapsed.TotalMilliseconds/1000 * Math.PI / 180) * 180 + -i*3)) * rectWidth*3
+                            );
+                            
+                            
+                            i++;                        
+                        }
+                    });
+                }
+
+                Thread.Sleep(8); // Add a slight delay to prevent high CPU usage
+            });
         }
 
         private void WinIntro()
@@ -646,8 +725,8 @@ namespace Ollama_GUI_Front_End
                         TextWrapping = TextWrapping.Wrap
                     };
                     userInput = textInput.Text;
+                    AddToConversationMemory(false, userInput);
                     textInput.Text = "";
-                    conversationMemory.Add(new KeyValuePair<bool, string>(false, userInput));
 
                     chatStackPanel.Children.Add(userMsg);
                     chatScroller.ScrollToBottom();
@@ -684,10 +763,11 @@ namespace Ollama_GUI_Front_End
                     chatStackPanel.Children.Add(botMsg);
                     chatScroller.ScrollToBottom();
 
+                    botLastOutput = botOutput;
                     botOutput = "";
                     await INTERNAL_GenerateResponseStreams(userInput, botMsgTextBlock);
 
-                    conversationMemory.Add(new KeyValuePair<bool, string>(true, botOutput));
+                    AddToConversationMemory(true, botOutput);
                 });
             });
             
@@ -695,7 +775,15 @@ namespace Ollama_GUI_Front_End
 
         private void AddToConversationMemory(bool speaker, string message)
         {
-
+            conversationMemory.Add(new KeyValuePair<bool, string>(speaker, message));
+            //MessageBox.Show(conversationMemory[0]);
+            if (memcap != 0)
+            {
+                while (conversationMemory.Count > memcap)
+                {
+                    conversationMemory.RemoveAt(0);
+                }
+            }
         }
 
         private async Task INTERNAL_GenerateResponseStreams(string userInput, TextBlock botMsgTextBlock)
@@ -706,8 +794,8 @@ namespace Ollama_GUI_Front_End
 
             foreach (var message in conversationMemory)
             {
-                string sender = (message.Key) ? "You:" : "User:";
-                conversationMemorySB.Append($"{sender} {message.Value}\n\n");
+                string sender = (message.Key) ? "You" : "User";
+                conversationMemorySB.Append($"'''{sender}: {message.Value}\n'''");
             }
             formattedPrompt = formattedPrompt
                 .Replace("{username}", _UserDisplayName)
@@ -720,6 +808,8 @@ namespace Ollama_GUI_Front_End
                     :"(with the bottom message being the latest message):"
                 )
             ;
+
+            MessageBox.Show(formattedPrompt);
             
             await foreach (var stream in ollama.GenerateAsync(formattedPrompt))
             {
@@ -930,7 +1020,8 @@ namespace Ollama_GUI_Front_End
 
             windowHeight.Completed += (s, e) =>
             {
-                intentionallyClosed = true;
+                _intentionallyClosed = true;
+                _intentionallyClosedByAnimation = true;
                 this.Close();
             };
 
@@ -944,7 +1035,7 @@ namespace Ollama_GUI_Front_End
 
         private void winCtrlBtnMinimize_Click(object sender, RoutedEventArgs e)
         {
-            intentionallyMinimized = true;
+            _intentionallyMinimized = true;
             MinimizeAnimation();
         }
 
@@ -984,23 +1075,25 @@ namespace Ollama_GUI_Front_End
             if (this.WindowState == WindowState.Minimized)
             {
                 // Perform actions when the application is minimized
-                if (!intentionallyMinimized)
+                if (!_intentionallyMinimized)
                 {
                     this.WindowState = WindowState.Normal;
                 }
             }
             if (this.WindowState == WindowState.Normal)
             {
-                if (intentionallyMinimized) MinimizeAnimation(false);
-                intentionallyMinimized = false;
+                if (_intentionallyMinimized) MinimizeAnimation(false);
+                _intentionallyMinimized = false;
             }
         }
 
         private void ApplicationWantsToQuit(object sender, CancelEventArgs e)
         {
-            if (!intentionallyClosed) // if we don't want the app to quit
+            if (!_intentionallyClosed) // if we don't want the app to quit
             {
                 e.Cancel = true;
+                
+                if (true) CloseAnimation(); // change the if condition to a variable that outputs unsaved chats
             }
             else // if we are fine with the app quitting
             {
@@ -1008,6 +1101,8 @@ namespace Ollama_GUI_Front_End
                 {
                     manualCancelSources[i] = true;
                 }
+                CloseAnimation();
+                if (!_intentionallyClosedByAnimation) e.Cancel = true;
             }
         }
 

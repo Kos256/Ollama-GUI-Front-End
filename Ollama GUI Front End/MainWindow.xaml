@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:Ollama_GUI_Front_End"
     mc:Ignorable="d"
-    Title="Ollama" Height="550" Width="800" Background="#00000000" Foreground="White" WindowStyle="None" AllowsTransparency="True" Icon="pack://application:,,,/Ollama GUI Front End;component/Assets/app.png" ResizeMode="CanMinimize" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20">
+    Title="Ollama" Height="550" Width="800" Background="#00000000" Foreground="White" WindowStyle="None" AllowsTransparency="True" Icon="pack://application:,,,/Ollama GUI Front End;component/assets/app.png" ResizeMode="CanMinimize" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20">
     <!--
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="30" CornerRadius="0" GlassFrameThickness="0"/>
@@ -40,7 +40,7 @@
                     <ControlTemplate TargetType="Button">
                         <Grid x:Name="buttonGrid" Background="Transparent">
                             <Border x:Name="border" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
-                                <Image Source="pack://application:,,,/Ollama GUI Front End;component/Assets/Window Controls/close.png" Height="15" Width="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Image Source="pack://application:,,,/Ollama GUI Front End;component/assets/Icons/Window Controls/close.png" Height="15" Width="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                         <ControlTemplate.Triggers>
@@ -59,7 +59,7 @@
                     <ControlTemplate TargetType="Button">
                         <Grid x:Name="buttonGrid" Background="Transparent">
                             <Border x:Name="border" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
-                                <Image Source="pack://application:,,,/Ollama GUI Front End;component/Assets/Window Controls/minimize.png" Height="15" Width="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Image Source="pack://application:,,,/Ollama GUI Front End;component/assets/Icons/Window Controls/minimize.png" Height="15" Width="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                         <ControlTemplate.Triggers>
@@ -93,14 +93,45 @@
             </Setter>
         </Style>
 
+        <!-- Default style for buttons to take place instead of ugly windows styling -->
+        <Style x:Key="ButtonDefaultHoverClick" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="buttonGrid" Background="{TemplateBinding Background}">
+                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                  Content="{TemplateBinding Content}" 
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  TextElement.Foreground="{TemplateBinding Foreground}"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!-- Hover Effect -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#33FFFFFF"/>
+                            </Trigger>
+                            <!-- Click Effect -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#22FFFFFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
     </Window.Resources>
 
     <Grid x:Name="RootGrid">
         <Rectangle x:Name="windowBG" Fill="Black" Stroke="#FF444444" Margin="10,55,10,10" RadiusX="11.5" RadiusY="11.5" d:IsLocked="True"/>
-        <Rectangle x:Name="windowBar" Fill="Black" Stroke="#FF444444" Margin="10,10,10,404" RadiusX="10.278" RadiusY="10.278" HorizontalAlignment="Center" Width="780" VerticalAlignment="Top" Height="36" d:IsLocked="True"/>
-        <TextBlock x:Name="windowBarTitle" TextAlignment="Left" HorizontalAlignment="Left" Height="18" Margin="49,18,0,0" TextWrapping="Wrap" Text="Ollama" VerticalAlignment="Top" Width="351" FontSize="14" FontFamily="{DynamicResource ExoRegular}" d:IsLocked="True"/>
-        <Image x:Name="windowIcon" Source="pack://application:,,,/Ollama GUI Front End;component/Assets/app legacy.png" Height="15" Width="15" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,18,0,0" d:IsLocked="True"/>
-        <Rectangle x:Name="windowDragLine" HorizontalAlignment="Center" Height="5" Margin="0,26,0,0" VerticalAlignment="Top" Width="320" d:IsLocked="True">
+        <Rectangle x:Name="windowBar" Fill="Black" Stroke="#FF444444" Margin="10,10,10,404" RadiusX="10.278" RadiusY="10.278" HorizontalAlignment="Center" Width="780" VerticalAlignment="Top" Height="40" d:IsLocked="True"/>
+        <Rectangle x:Name="windowDragLine" HorizontalAlignment="Center" Height="30" Margin="0,15,0,0" VerticalAlignment="Top" Width="320" d:IsLocked="True">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                     <GradientStop Offset="0" Color="Transparent"/>
@@ -110,9 +141,11 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="windowBarCollider" MouseEnter="WinBarColliderMouseEnter" MouseLeave="WinBarColliderMouseLeave" Margin="167,10,167,404" RadiusX="10.278" RadiusY="10.278" Fill="Transparent" HorizontalAlignment="Center" Width="466" VerticalAlignment="Top" Height="36"/>
-        <Button Style="{StaticResource WinControlBtnHoverClose}" x:Name="winCtrlBtnClose" HorizontalAlignment="Right" Margin="0,12,26,0" VerticalAlignment="Top" Height="32" Width="48" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="winCtrlBtnClose_Click" d:IsLocked="True"/>
-        <Button Style="{StaticResource WinControlBtnHoverMinimize}" x:Name="winCtrlBtnMinimize" HorizontalAlignment="Right" Margin="0,12,79,0" VerticalAlignment="Top" Height="32" Width="48" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="winCtrlBtnMinimize_Click" d:IsLocked="True"/>
+        <TextBlock x:Name="windowBarTitle" TextAlignment="Left" HorizontalAlignment="Left" Height="24" Margin="49,18,0,0" TextWrapping="Wrap" Text="Ollama" VerticalAlignment="Top" Width="725" FontSize="14" FontFamily="{DynamicResource ExoRegular}" Background="Black" Padding="0,3,0,1" d:IsLocked="True"/>
+        <Image x:Name="windowIcon" Source="pack://application:,,,/Ollama GUI Front End;component/assets/app legacy.png" Height="18" Width="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,20,0,0" d:IsLocked="True"/>
+        <Rectangle x:Name="windowBarCollider" MouseEnter="WinBarColliderMouseEnter" MouseLeave="WinBarColliderMouseLeave" Margin="167,10,167,404" RadiusX="10.278" RadiusY="10.278" Fill="Transparent" HorizontalAlignment="Center" Width="466" VerticalAlignment="Top" Height="36" d:IsLocked="True"/>
+        <Button Style="{StaticResource WinControlBtnHoverClose}" x:Name="winCtrlBtnClose" HorizontalAlignment="Right" Margin="0,12,26,0" VerticalAlignment="Top" Height="36" Width="48" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="winCtrlBtnClose_Click" d:IsLocked="True"/>
+        <Button Style="{StaticResource WinControlBtnHoverMinimize}" x:Name="winCtrlBtnMinimize" HorizontalAlignment="Right" Margin="0,12,79,0" VerticalAlignment="Top" Height="36" Width="48" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="winCtrlBtnMinimize_Click" d:IsLocked="True"/>
         <Grid x:Name="LoadingGrid" d:IsHidden="True">
             <Rectangle x:Name="loadingRect" HorizontalAlignment="Center" Height="480" VerticalAlignment="Top" Width="778" Margin="0,56,0,0" RadiusX="11" RadiusY="11">
                 <Rectangle.Fill>
@@ -125,7 +158,15 @@
             </Rectangle>
             <TextBlock x:Name="loadingTitle" TextAlignment="Center" HorizontalAlignment="Center" Height="66" TextWrapping="Wrap" Text="Just a sec..." VerticalAlignment="Center" Width="374" FontSize="48" FontFamily="{DynamicResource ExoRegular}"/>
             <TextBlock x:Name="loadingSubtitle" TextAlignment="Center" HorizontalAlignment="Center" Height="66" Margin="0,125,0,0" TextWrapping="Wrap" Text="&lt; Tooltip &gt;" VerticalAlignment="Center" Width="374" FontSize="18" FontFamily="{DynamicResource ExoItalic}" Foreground="#FFAFAFAF"/>
-            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="40" Margin="0,510,0,0" TextWrapping="Wrap" Text="Version v1 by Kos256" VerticalAlignment="Top" Width="539">
+            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="29" TextWrapping="Wrap" Text="Ollama FE GUI v0.2.1 Alpha" VerticalAlignment="Top" Width="539" Margin="0,469,0,0">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF444444" Offset="1"/>
+                        <GradientStop Color="#FFE9E9E9" Offset="0.107"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="29" TextWrapping="Wrap" Text="By Kos256" VerticalAlignment="Top" Width="539" Margin="0,498,0,0">
                 <TextBlock.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FF440000" Offset="1"/>
@@ -141,14 +182,14 @@
             </ScrollViewer>
             <Grid x:Name="LandingUIGrid">
                 <Grid Margin="10,145,0,130" HorizontalAlignment="Left" Width="388">
-                    <Button x:Name="memCapBtnDecrease" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="47" Click="memCapBtnDecrease_Click" BorderBrush="White" BorderThickness="2"  Foreground="White" FontSize="20" Margin="76,70,0,0">
+                    <Button Style="{StaticResource ButtonDefaultHoverClick}" x:Name="memCapBtnDecrease" HorizontalAlignment="Left" Height="47" VerticalAlignment="Top" Width="47" Click="memCapBtnDecrease_Click" BorderBrush="White" BorderThickness="2"  Foreground="White" FontSize="20" Margin="76,70,0,0">
                         <Button.Background>
-                            <ImageBrush ImageSource="/Assets/Icons/minus.png" Stretch="Uniform"/>
+                            <ImageBrush ImageSource="/assets/Icons/minus.png" Stretch="Uniform"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="memCapBtnIncrease" HorizontalAlignment="Right" Height="47" VerticalAlignment="Top" Width="47" Click="memCapBtnIncrease_Click" BorderBrush="White" BorderThickness="2" Foreground="White" FontSize="20" Margin="0,70,76,0">
+                    <Button Style="{StaticResource ButtonDefaultHoverClick}" x:Name="memCapBtnIncrease" HorizontalAlignment="Right" Height="47" VerticalAlignment="Top" Width="47" Click="memCapBtnIncrease_Click" BorderBrush="White" BorderThickness="2" Foreground="White" FontSize="20" Margin="0,70,76,0">
                         <Button.Background>
-                            <ImageBrush ImageSource="/Assets/Icons/plus.png" Stretch="Uniform"/>
+                            <ImageBrush ImageSource="/assets/Icons/plus.png" Stretch="Uniform"/>
                         </Button.Background>
                     </Button>
                     <TextBox x:Name="memoryCapTextbox" TextAlignment="Center" BorderThickness="2" KeyDown="memoryCapTextbox_KeyDown" HorizontalAlignment="Center" PreviewTextInput="memoryCapTextbox_PreviewTextInput" DataObject.Pasting="memoryCapTextbox_Pasting" TextChanged="memoryCapTextbox_TextChanged" AcceptsReturn="False" GotFocus="memoryCapTextbox_GotFocus"  LostFocus="memoryCapTextbox_LostFocus" Height="47" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="125" Background="{x:Null}" BorderBrush="White" Foreground="White" CaretBrush="White" FontFamily="{DynamicResource ExoRegular}" FontSize="36" Margin="0,70,0,0" SelectionBrush="White"/>
@@ -165,7 +206,7 @@
                     <Border x:Name="selectedModelTextBorder" BorderBrush="White" Width="360" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,200,0,0" BorderThickness="1,0,1,1" Height="19">
                         <TextBlock x:Name="selectedModelText" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Selected: null" VerticalAlignment="Top" FontSize="12" FontFamily="{DynamicResource ExoRegular}" Foreground="#FF00FF4A" Padding="5,0,0,5"/>
                     </Border>
-                    <Button Content="Browse more models..." HorizontalAlignment="Center" Height="33" VerticalAlignment="Bottom" Width="360" Margin="0,0,0,13" Foreground="White" Background="Black" BorderBrush="White"/>
+                    <Button x:Name="openModelBrowserBtn" Style="{StaticResource ButtonDefaultHoverClick}" Content="Browse more models..." HorizontalAlignment="Center" Height="33" VerticalAlignment="Bottom" Width="360" Margin="0,0,0,13" Foreground="White" Background="Black" BorderBrush="White" Click="openModelBrowserBtn_Click"/>
                 </Grid>
                 <Rectangle Height="289" Width="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Rectangle.Fill>
@@ -194,6 +235,10 @@
                 TextWrapping="Wrap" AcceptsReturn="False" TextChanged="textInput_TextChanged" SelectionChanged="textInput_SelectionChanged" KeyDown="textInput_KeyDown" KeyUp="textInput_KeyUp" LostFocus="textInput_LostFocus" GotFocus="textInput_GotFocus"
                 Style="{StaticResource MainTextInput}" Margin="0,0,0,31"
             />
+            <Grid x:Name="ModelBrowserWaitOverlayGrid" Margin="10,55,10,10">
+                <Rectangle x:Name="ModelBrowserWait" Fill="#99000000" RadiusX="11.25" RadiusY="11.25" Margin="1,1,1,1"/>
+                <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Continue in the model browser window..." VerticalAlignment="Center" Width="595" Margin="0,100,0,0" TextAlignment="Center"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

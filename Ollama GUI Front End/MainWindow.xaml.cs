@@ -23,11 +23,11 @@ using System.Text.RegularExpressions;
 using System.Net.Http.Json;
 using System.Xml;
 using System.Security.Cryptography.X509Certificates;
+using Ollama_GUI_Front_End.Assets;
+using System.Windows.Media.Effects;
 
 /*
  * TO-DO: 
- * > Select first installed model it can find if the value in savedata is "none"
- * > Scale memory of the LLM with memory cap
  * > Make memcap evaluate numbers like 050 to 50 (trim any zeros before the actual number)
  * > Add model browser button (pops out a new window)
  * > MD to RTF parser (for user + LLM)
@@ -63,6 +63,7 @@ namespace Ollama_GUI_Front_End
         public bool _intentionallyClosedByAnimation = false;
         public bool _intentionallyMinimized = false;
         public string _UserDisplayName;
+        private ModelBrowser _ModelBrowserWindow;
 
         public bool firstTimeSession = false;
         public AppSaveData saveData;
@@ -510,6 +511,7 @@ namespace Ollama_GUI_Front_End
         private void openModelBrowserBtn_Click(object sender, RoutedEventArgs e)
         {
             ModelBrowserWaitOverlayGrid.Visibility = Visibility.Visible;
+            
             List<Rectangle> rects = new List<Rectangle>();
 
             int rectCount = 10;
@@ -542,7 +544,6 @@ namespace Ollama_GUI_Front_End
                 ModelBrowserWaitOverlayGrid.Children.Add(rect);
             }
 
-
             Task.Run(() => {
                 while (!manualCancelSources[2])
                 {
@@ -559,7 +560,6 @@ namespace Ollama_GUI_Front_End
                                 Math.Abs(Math.Sin((_globalStopwatch.Elapsed.TotalMilliseconds/1000 * Math.PI / 180) * 180 + -i*3)) * rectWidth*3
                             );
                             
-                            
                             i++;                        
                         }
                     });
@@ -567,6 +567,13 @@ namespace Ollama_GUI_Front_End
 
                 Thread.Sleep(8); // Add a slight delay to prevent high CPU usage
             });
+
+            _ModelBrowserWindow = new ModelBrowser();
+            _ModelBrowserWindow.Left = SystemParameters.WorkArea.Width / 2 - _ModelBrowserWindow.Width / 2;
+            _ModelBrowserWindow.Top = SystemParameters.WorkArea.Height / 2 - _ModelBrowserWindow.Height / 2;
+            _ModelBrowserWindow.Show();
+
+
         }
 
         private void WinIntro()
@@ -802,14 +809,12 @@ namespace Ollama_GUI_Front_End
                 .Replace("{msgB}", botLastOutput)
                 .Replace("{msgU}", userInput)
                 .Replace("{conversation}", conversationMemorySB.ToString())
-                .Replace("{convolead}", 
-                    (memcap>0)
-                    ?"so far. These are the last {memcap} messages from this conversation (the bottom one being the last message):"
-                    :"(with the bottom message being the latest message):"
+                .Replace("{convolead}",
+                    (memcap > 0)
+                    ? "so far. These are the last {memcap} messages from this conversation (the bottom one being the last message):"
+                    : "(with the bottom message being the latest message):"
                 )
             ;
-
-            MessageBox.Show(formattedPrompt);
             
             await foreach (var stream in ollama.GenerateAsync(formattedPrompt))
             {
@@ -923,7 +928,6 @@ namespace Ollama_GUI_Front_End
             saveData.Settings.MemoryCap = memcap;
             SaveAppSaveData(saveData);
         }
-
 
         private void WinBarColliderMouseEnter(object sender, RoutedEventArgs e)
         {
@@ -1093,7 +1097,7 @@ namespace Ollama_GUI_Front_End
             {
                 e.Cancel = true;
                 
-                if (true) CloseAnimation(); // change the if condition to a variable that outputs unsaved chats
+                if (true) CloseAnimation(); // change the if (true) condition to a variable that outputs if unsaved chats are present
             }
             else // if we are fine with the app quitting
             {
@@ -1101,6 +1105,11 @@ namespace Ollama_GUI_Front_End
                 {
                     manualCancelSources[i] = true;
                 }
+
+                _ModelBrowserWindow._intentionallyClosed = true;
+                _ModelBrowserWindow._intentionallyClosedByAnimation = true;
+                _ModelBrowserWindow.Close();
+
                 CloseAnimation();
                 if (!_intentionallyClosedByAnimation) e.Cancel = true;
             }

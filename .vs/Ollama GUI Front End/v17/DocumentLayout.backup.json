@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|c:\\users\\kosai\\source\\repos\\ollama-gui-front-end\\ollama gui front end\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|solutionrelative:ollama gui front end\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|c:\\users\\kosai\\source\\repos\\ollama-gui-front-end\\ollama gui front end\\modelbrowser.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|solutionrelative:ollama gui front end\\modelbrowser.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|c:\\users\\kosai\\source\\repos\\ollama-gui-front-end\\ollama gui front end\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|solutionrelative:ollama gui front end\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|c:\\users\\kosai\\source\\repos\\ollama-gui-front-end\\ollama gui front end\\modelbrowser.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|solutionrelative:ollama gui front end\\modelbrowser.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|c:\\users\\kosai\\source\\repos\\ollama-gui-front-end\\ollama gui front end\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|solutionrelative:ollama gui front end\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|c:\\users\\kosai\\source\\repos\\ollama-gui-front-end\\ollama gui front end\\ollama gui front end.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|solutionrelative:ollama gui front end\\ollama gui front end.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|c:\\users\\kosai\\source\\repos\\ollama-gui-front-end\\ollama gui front end\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{0E64074F-31A8-4EB2-946B-115E7230DC92}|Ollama GUI Front End\\Ollama GUI Front End.csproj|solutionrelative:ollama gui front end\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,42 +26,43 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Ollama GUI Front End.csproj",
-              "DocumentMoniker": "C:\\Users\\kosai\\Source\\Repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
-              "RelativeDocumentMoniker": "Ollama GUI Front End\\Ollama GUI Front End.csproj",
-              "ToolTip": "C:\\Users\\kosai\\Source\\Repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
-              "RelativeToolTip": "Ollama GUI Front End\\Ollama GUI Front End.csproj",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAEwFgAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-02-15T10:09:44.374Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\App.xaml",
-              "RelativeDocumentMoniker": "Ollama GUI Front End\\App.xaml",
-              "ToolTip": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\App.xaml",
-              "RelativeToolTip": "Ollama GUI Front End\\App.xaml",
+              "DocumentIndex": 0,
+              "Title": "ModelBrowser.xaml",
+              "DocumentMoniker": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\ModelBrowser.xaml",
+              "RelativeDocumentMoniker": "Ollama GUI Front End\\ModelBrowser.xaml",
+              "ToolTip": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\ModelBrowser.xaml",
+              "RelativeToolTip": "Ollama GUI Front End\\ModelBrowser.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-15T09:28:43.915Z",
+              "WhenOpened": "2025-02-15T10:41:54.204Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "ModelBrowser.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\ModelBrowser.xaml.cs",
+              "RelativeDocumentMoniker": "Ollama GUI Front End\\ModelBrowser.xaml.cs",
+              "ToolTip": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\ModelBrowser.xaml.cs",
+              "RelativeToolTip": "Ollama GUI Front End\\ModelBrowser.xaml.cs",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAwwJ4AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T10:41:53.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Ollama GUI Front End\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\MainWindow.xaml",
               "RelativeToolTip": "Ollama GUI Front End\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-08T17:32:25.016Z",
+              "WhenOpened": "2025-02-15T10:41:56.062Z",
               "EditorCaption": ""
             },
             {
@@ -72,9 +73,10 @@
               "RelativeDocumentMoniker": "Ollama GUI Front End\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\MainWindow.xaml.cs",
               "RelativeToolTip": "Ollama GUI Front End\\MainWindow.xaml.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAACUAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAACkDAAAAAAAAAAAiwDkDAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-08T17:32:14.463Z"
+              "WhenOpened": "2025-02-15T10:41:55.332Z",
+              "EditorCaption": ""
             }
           ]
         }

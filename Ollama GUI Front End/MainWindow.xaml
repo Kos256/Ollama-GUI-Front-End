@@ -158,7 +158,7 @@
             </Rectangle>
             <TextBlock x:Name="loadingTitle" TextAlignment="Center" HorizontalAlignment="Center" Height="66" TextWrapping="Wrap" Text="Just a sec..." VerticalAlignment="Center" Width="374" FontSize="48" FontFamily="{DynamicResource ExoRegular}"/>
             <TextBlock x:Name="loadingSubtitle" TextAlignment="Center" HorizontalAlignment="Center" Height="66" Margin="0,125,0,0" TextWrapping="Wrap" Text="&lt; Tooltip &gt;" VerticalAlignment="Center" Width="374" FontSize="18" FontFamily="{DynamicResource ExoItalic}" Foreground="#FFAFAFAF"/>
-            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="29" TextWrapping="Wrap" Text="Ollama FE GUI v0.2.1 Alpha" VerticalAlignment="Top" Width="539" Margin="0,469,0,0">
+            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" Height="29" TextWrapping="Wrap" Text="Ollama FE GUI v0.3 Alpha" VerticalAlignment="Top" Width="539" Margin="0,469,0,0">
                 <TextBlock.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FF444444" Offset="1"/>

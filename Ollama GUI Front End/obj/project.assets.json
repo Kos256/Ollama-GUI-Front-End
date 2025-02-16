@@ -2,6 +2,31 @@
   "version": 3,
   "targets": {
     "net8.0-windows7.0": {
+      "BlurredBackground.WPF/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0-windows7.0/BlurredBackground.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/BlurredBackground.WPF.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "HtmlAgilityPack/1.11.72": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/HtmlAgilityPack.dll": {
+            "related": ".deps.json;.pdb;.xml"
+          }
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/9.0.0": {
         "type": "package",
         "compile": {
@@ -241,6 +266,74 @@
     }
   },
   "libraries": {
+    "BlurredBackground.WPF/1.1.0": {
+      "sha512": "lwdkPaIkXgt2V1mtSvVgIf2AX1bM5FaBV2LpVMyQTv5jAt+Mw0+BZKbE1YydG4y9B1SiwAM4WeX/zuhNmyEixQ==",
+      "type": "package",
+      "path": "blurredbackground.wpf/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "blurredbackground.wpf.1.1.0.nupkg.sha512",
+        "blurredbackground.wpf.nuspec",
+        "lib/net462/BlurredBackground.WPF.dll",
+        "lib/net47/BlurredBackground.WPF.dll",
+        "lib/net48/BlurredBackground.WPF.dll",
+        "lib/net5.0-windows7.0/BlurredBackground.WPF.dll",
+        "lib/net6.0-windows7.0/BlurredBackground.WPF.dll",
+        "lib/net8.0-windows7.0/BlurredBackground.WPF.dll"
+      ]
+    },
+    "HtmlAgilityPack/1.11.72": {
+      "sha512": "RNLgXxTFdIGFI+o5l8c2aJ2L5StIRn9Uv8HKR76p7QP4ZUL26wzpWUCWh08xWUdkL2kocl+Xhv6VUu0rA1npVg==",
+      "type": "package",
+      "path": "htmlagilitypack/1.11.72",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "htmlagilitypack.1.11.72.nupkg.sha512",
+        "htmlagilitypack.nuspec",
+        "lib/Net35/HtmlAgilityPack.dll",
+        "lib/Net35/HtmlAgilityPack.pdb",
+        "lib/Net35/HtmlAgilityPack.xml",
+        "lib/Net40-client/HtmlAgilityPack.dll",
+        "lib/Net40-client/HtmlAgilityPack.pdb",
+        "lib/Net40-client/HtmlAgilityPack.xml",
+        "lib/Net40/HtmlAgilityPack.XML",
+        "lib/Net40/HtmlAgilityPack.dll",
+        "lib/Net40/HtmlAgilityPack.pdb",
+        "lib/Net45/HtmlAgilityPack.XML",
+        "lib/Net45/HtmlAgilityPack.dll",
+        "lib/Net45/HtmlAgilityPack.pdb",
+        "lib/NetCore45/HtmlAgilityPack.XML",
+        "lib/NetCore45/HtmlAgilityPack.dll",
+        "lib/NetCore45/HtmlAgilityPack.pdb",
+        "lib/netstandard1.3/HtmlAgilityPack.deps.json",
+        "lib/netstandard1.3/HtmlAgilityPack.dll",
+        "lib/netstandard1.3/HtmlAgilityPack.pdb",
+        "lib/netstandard1.3/HtmlAgilityPack.xml",
+        "lib/netstandard1.6/HtmlAgilityPack.deps.json",
+        "lib/netstandard1.6/HtmlAgilityPack.dll",
+        "lib/netstandard1.6/HtmlAgilityPack.pdb",
+        "lib/netstandard1.6/HtmlAgilityPack.xml",
+        "lib/netstandard2.0/HtmlAgilityPack.deps.json",
+        "lib/netstandard2.0/HtmlAgilityPack.dll",
+        "lib/netstandard2.0/HtmlAgilityPack.pdb",
+        "lib/netstandard2.0/HtmlAgilityPack.xml",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.XML",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.XML",
+        "lib/uap10.0/HtmlAgilityPack.dll",
+        "lib/uap10.0/HtmlAgilityPack.pdb",
+        "lib/uap10.0/HtmlAgilityPack.pri",
+        "readme.md"
+      ]
+    },
     "Microsoft.Bcl.AsyncInterfaces/9.0.0": {
       "sha512": "owmu2Cr3IQ8yQiBleBHlGk8dSQ12oaF2e7TpzwJKEl4m84kkZJjEY1n33L67Y3zM5jPOjmmbdHjbfiL0RqcMRQ==",
       "type": "package",
@@ -590,6 +683,8 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
+      "BlurredBackground.WPF >= 1.1.0",
+      "HtmlAgilityPack >= 1.11.72",
       "Newtonsoft.Json >= 13.0.3",
       "OllamaSharp >= 5.0.5",
       "System.DirectoryServices.AccountManagement >= 9.0.2"
@@ -645,6 +740,14 @@
       "net8.0-windows7.0": {
         "targetAlias": "net8.0-windows",
         "dependencies": {
+          "BlurredBackground.WPF": {
+            "target": "Package",
+            "version": "[1.1.0, )"
+          },
+          "HtmlAgilityPack": {
+            "target": "Package",
+            "version": "[1.11.72, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"

@@ -144,8 +144,8 @@
         <TextBlock x:Name="windowBarTitle" TextAlignment="Left" HorizontalAlignment="Left" Height="24" Margin="49,18,0,0" TextWrapping="Wrap" Text="Ollama" VerticalAlignment="Top" Width="725" FontSize="14" FontFamily="{DynamicResource ExoRegular}" Background="Black" Padding="0,3,0,1" d:IsLocked="True"/>
         <Image x:Name="windowIcon" Source="pack://application:,,,/Ollama GUI Front End;component/assets/app legacy.png" Height="18" Width="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,20,0,0" d:IsLocked="True"/>
         <Rectangle x:Name="windowBarCollider" MouseEnter="WinBarColliderMouseEnter" MouseLeave="WinBarColliderMouseLeave" Margin="167,10,167,404" RadiusX="10.278" RadiusY="10.278" Fill="Transparent" HorizontalAlignment="Center" Width="466" VerticalAlignment="Top" Height="36" d:IsLocked="True"/>
-        <Button Style="{StaticResource WinControlBtnHoverClose}" x:Name="winCtrlBtnClose" HorizontalAlignment="Right" Margin="0,12,26,0" VerticalAlignment="Top" Height="36" Width="48" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="winCtrlBtnClose_Click" d:IsLocked="True"/>
-        <Button Style="{StaticResource WinControlBtnHoverMinimize}" x:Name="winCtrlBtnMinimize" HorizontalAlignment="Right" Margin="0,12,79,0" VerticalAlignment="Top" Height="36" Width="48" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="winCtrlBtnMinimize_Click" d:IsLocked="True"/>
+        <Button Style="{StaticResource WinControlBtnHoverClose}" x:Name="winCtrlBtnClose" HorizontalAlignment="Right" Margin="0,12,26,0" VerticalAlignment="Top" Height="36" Width="48" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="winCtrlBtnClose_Click"/>
+        <Button Style="{StaticResource WinControlBtnHoverMinimize}" x:Name="winCtrlBtnMinimize" HorizontalAlignment="Right" Margin="0,12,79,0" VerticalAlignment="Top" Height="36" Width="48" BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}" Click="winCtrlBtnMinimize_Click"/>
         <Grid x:Name="LoadingGrid" d:IsHidden="True">
             <Rectangle x:Name="loadingRect" HorizontalAlignment="Center" Height="480" VerticalAlignment="Top" Width="778" Margin="0,56,0,0" RadiusX="11" RadiusY="11">
                 <Rectangle.Fill>
@@ -176,7 +176,7 @@
             </TextBlock>
         </Grid>
 
-        <Grid x:Name="MainGrid">
+        <Grid x:Name="MainGrid" d:IsHidden="True">
             <ScrollViewer x:Name="chatScroller" VerticalScrollBarVisibility="Hidden" Foreground="White" HorizontalAlignment="Center" Width="780" VerticalAlignment="Top" Height="356" Margin="0,57,0,0" BorderBrush="Red" BorderThickness="2">
                 <StackPanel x:Name="chatStackPanel"/>
             </ScrollViewer>

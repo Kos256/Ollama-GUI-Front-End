@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vsFt/kRapg8=",
+  "dgSpecHash": "fpgbfWz8+OY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\kosai\\Source\\Repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
+  "projectFilePath": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kosai\\.nuget\\packages\\blurredbackground.wpf\\1.1.0\\blurredbackground.wpf.1.1.0.nupkg.sha512",
     "C:\\Users\\kosai\\.nuget\\packages\\htmlagilitypack\\1.11.72\\htmlagilitypack.1.11.72.nupkg.sha512",

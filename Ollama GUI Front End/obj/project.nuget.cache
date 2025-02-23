@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "trgs1/o4obE=",
+  "dgSpecHash": "fpgbfWz8+OY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\kosai\\Source\\Repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
+  "projectFilePath": "C:\\Users\\kosai\\source\\repos\\Ollama-GUI-Front-End\\Ollama GUI Front End\\Ollama GUI Front End.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\kosai\\.nuget\\packages\\blurredbackground.wpf\\1.1.0\\blurredbackground.wpf.1.1.0.nupkg.sha512",
+    "C:\\Users\\kosai\\.nuget\\packages\\htmlagilitypack\\1.11.72\\htmlagilitypack.1.11.72.nupkg.sha512",
     "C:\\Users\\kosai\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\9.0.0\\microsoft.bcl.asyncinterfaces.9.0.0.nupkg.sha512",
     "C:\\Users\\kosai\\.nuget\\packages\\microsoft.bcl.cryptography\\9.0.2\\microsoft.bcl.cryptography.9.0.2.nupkg.sha512",
     "C:\\Users\\kosai\\.nuget\\packages\\microsoft.extensions.ai.abstractions\\9.1.0-preview.1.25064.3\\microsoft.extensions.ai.abstractions.9.1.0-preview.1.25064.3.nupkg.sha512",

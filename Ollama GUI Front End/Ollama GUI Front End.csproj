@@ -71,14 +71,11 @@
     <None Remove="Assets\Icons\minus.png" />
     <None Remove="Assets\Icons\plug.svg" />
     <None Remove="Assets\Icons\plus.png" />
-    <None Remove="Assets\Window Controls\close.png" />
-    <None Remove="Assets\Window Controls\close.svg" />
-    <None Remove="Assets\Window Controls\maximize.png" />
-    <None Remove="Assets\Window Controls\maximize.svg" />
-    <None Remove="Assets\Window Controls\minimize.png" />
-    <None Remove="Assets\Window Controls\minimize.svg" />
-    <None Remove="Assets\Window Controls\restore.png" />
-    <None Remove="Assets\Window Controls\restore.svg" />
+    <None Remove="assets\Icons\Window Controls\close.png" />
+    <None Remove="assets\Icons\Window Controls\maximize.png" />
+    <None Remove="assets\Icons\Window Controls\minimize.png" />
+    <None Remove="assets\Icons\Window Controls\restore.png" />
+	<None Include="Assets\Icons\plus.png" />
     <None Remove="close.png" />
     <None Remove="Screenshot 2023-03-05 135529.png" />
   </ItemGroup>
@@ -88,6 +85,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BlurredBackground.WPF" Version="1.1.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.72" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="OllamaSharp" Version="5.0.5" />
     <PackageReference Include="System.DirectoryServices.AccountManagement" Version="9.0.2" />
@@ -116,14 +115,10 @@
     <Resource Include="Assets\Fonts\Exo\Exo ThinItalic.otf" />
     <Resource Include="Assets\Icons\minus.png" />
     <Resource Include="Assets\Icons\plus.png" />
-    <Resource Include="Assets\Window Controls\close.png" />
-    <Resource Include="Assets\Window Controls\close.svg" />
-    <Resource Include="Assets\Window Controls\maximize.png" />
-    <Resource Include="Assets\Window Controls\maximize.svg" />
-    <Resource Include="Assets\Window Controls\minimize.png" />
-    <Resource Include="Assets\Window Controls\minimize.svg" />
-    <Resource Include="Assets\Window Controls\restore.png" />
-    <Resource Include="Assets\Window Controls\restore.svg" />
+    <Resource Include="assets\Icons\Window Controls\close.png" />
+    <Resource Include="assets\Icons\Window Controls\maximize.png" />
+    <Resource Include="assets\Icons\Window Controls\minimize.png" />
+    <Resource Include="assets\Icons\Window Controls\restore.png" />
   </ItemGroup>
 
 </Project>
